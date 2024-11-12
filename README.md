@@ -5,6 +5,7 @@ Collect model quantization related papers, data, repositories
 ## Papers
 
 - [Diffusion Model](#diffusion-model)
+- [Zero-shot And Data Free Quant](#zero-shot-and-data-free-quant)
 
 ### <a name="Diffusion Model"></a> Diffusion Model
 
@@ -32,6 +33,36 @@ NeM tackles the accumulation of quantization errors during multi-step denoising 
 - `[ICCV 2023]`Q-Diffusion: Quantizing Diffusion Models, Li et al. [Arxiv](http://arxiv.org/abs/2302.04304)| [Github](https://github.com/Xiuyu-Li/q-diffusion)
 >Shortcut-splitting quantization addresses abnormal activation and weight distributions in shortcut layers by performing split quantization on activations and weights before concatenation.
 
+### <a name="Zero-shot And Data Free Quant"></a> Zero-shot And Data Free Quant
+
+- `[CVPR 2020]`ZeroQ: A Novel Zero Shot Quantization Framework, Cai et al. [Arxiv](https://arxiv.org/abs/2001.00281)| [Github](https://github.com/amirgholami/ZeroQ)
+
+- `[CVPR 2021]`Diversifying Sample Generation for Accurate Data-Free Quantization, Zhang et al.[Arxiv](https://arxiv.org/abs/2103.01049)
+
+
+- `[CVPR 2021]`Zero-shot Adversarial Quantization, Zhang et al. [Arxiv](https://arxiv.org/abs/2103.15263)| [Github](https://github.com/FLHonker/ZAQ-code)
+
+- `[CVPR 2022]`Data-Free Network Compression via Parametric Non-uniform Mixed Precision Quantization, Chikin et al. [CVF](https://openaccess.thecvf.com/content/CVPR2022/papers/Chikin_Data-Free_Network_Compression_via_Parametric_Non-Uniform_Mixed_Precision_Quantization_CVPR_2022_paper.pdf)
+
+- `[CVPR 2023]`Hard Sample Matters a Lot in Zero-Shot Quantization, Li et al. [Arxiv](https://arxiv.org/abs/2303.13826)| [Github](https://github.com/lihuantong/HAST)
+
+- `[CVPR 2023]`Adaptive Data-Free Quantization, Qian et al. [Arxiv](https://arxiv.org/abs/2303.06869)| [Github](https://github.com/hfutqian/AdaDFQ)
+
+- `[CVPR 2023]`GENIE: Show Me the Data for Quantization, Jeon et al. [Arxiv](https://arxiv.org/abs/2212.04780)| [Github](https://github.com/SamsungLabs/Genie)
+
+- `[ECCV 2022]`Patch Similarity Aware Data-Free Quantization for Vision Transformers, Li et al. [Arxiv](https://arxiv.org/pdf/2203.02250)| [Github](https://github.com/zkkli/PSAQ-ViT)
+
+- `[NuerIPS 2023]`REx: Data-Free Residual Quantization Error Expansion, Yvinec et al. [Arxiv](https://arxiv.org/pdf/2203.14645)
+
+- `[NuerIPS 2023]`TexQ: Zero-shot Network Quantization with Texture Feature Distribution Calibration, Chen et al. [OpenReview](https://openreview.net/forum?id=r8LYNleLf9)| [Github](https://github.com/dangsingrue/TexQ)
+
+- `[NuerIPS 2022]`ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers, Yao et al. [Arxiv](https://arxiv.org/abs/2206.01861)| [Github](https://github.com/microsoft/DeepSpeed)
+
+- `[AAAI 2024]`Norm Tweaking: High-Performance Low-Bit Quantization of Large Language Models, Li et al. [Arxiv](https://arxiv.org/abs/2309.02784)| [Github](https://github.com/smpanaro/norm-tweaking)
+
+- `[IJCAI 2022]`MultiQuant: Training Once for Multi-bit Quantization of Neural Networks, Xu et al. [IJCAI](https://www.ijcai.org/proceedings/2022/0504.pdf)| [Github](https://github.com/smpanaro/norm-tweaking)
+
+- `[ICLR 2023]`PowerQuant:Automorphism Search For Non-Uniform Quantization, Yvinec et al. [OpenReview](https://openreview.net/forum?id=s1KljJpAukm)
 
 ## Star History
 

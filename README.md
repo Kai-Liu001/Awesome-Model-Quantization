@@ -8,7 +8,7 @@ Collect model quantization related papers, data, repositories
 
 ### <a name="Diffusion Model"></a> Diffusion Model
 
-- `[CVPR 2024]` TFMQ-DM: Temporal Feature Maintenance Quantization for Diffusion Models, Huang et al. [Arxiv](https://arxiv.org/abs/2311.16503)|[Github](https://modeltc.github.io/TFMQ-DM/)
+- `[CVPR 2024]` TFMQ-DM: Temporal Feature Maintenance Quantization for Diffusion Models, Huang et al. [Arxiv](https://arxiv.org/abs/2311.16503) | [Github](https://modeltc.github.io/TFMQ-DM/)
 > 对时间特征进行了维护 减少了时间步的损失 对每一个时间步使用不同的量化参数
 
 

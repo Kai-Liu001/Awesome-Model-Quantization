@@ -5,12 +5,14 @@ Collect model quantization related papers, data, repositories
 
 
 ## Papers
+- [Stochastic Quantization](#stochastic-quantization)
+- [Diffusion Model](#diffusion-model)
+- [Zero-shot And Data Free Quant](#zero-shot-and-data-free-quant)
 
-<<<<<<< HEAD
 ### <a name="Stochastic Quantization "></a> Stochastic Quantization 
 
 - `[ICLR 2021]`Degree-Quant: Quantization-Aware Training for Graph Neural Networks,Shyam A. Tailor.[Arxiv](https://arxiv.org/abs/2008.05000)|[Github](https://github.com/camlsys/degree-quant)
->During the training process, some nodes in the graph neural network are randomly protected from quantization, with nodes having higher in-degrees being more likely to be safeguarded, as they are more significantly affected by the reduction in precision.
+>During the training process, some nodes in the graph neural network are randomly protected from quantization, with nodes having higher in-degrees being more likely to be safeguarded, as they are more significantly affected by the reduction in precision. 
 
 - `[ICLR 2021]`Training with Quantization Noise for Extreme Model Compression,Angela Fan.[Arxiv](https://arxiv.org/abs/2004.07320)|[Github](https://github.com/facebookresearch/fairseq/tree/main/examples/quant_noise)
 >The paper proposes a novel method that introduces quantization noise (Quant-Noise) during the training process to train networks to adapt to extreme compression methods, such as Product Quantization, which typically result in severe approximation errors. This method quantizes only a random subset of weights during each forward pass, allowing other weights to pass gradients without bias. By controlling the amount and form of noise, extreme compression is achieved while maintaining the performance of the original model.
@@ -28,11 +30,6 @@ Collect model quantization related papers, data, repositories
 
 - `[CVPR 2023]`Bit-Shrinking: Limiting Instantaneous Sharpness for Improving Post-Training Quantization,Chen Lin.[CVF](https://openaccess.thecvf.com/content/CVPR2023/papers/Lin_Bit-Shrinking_Limiting_Instantaneous_Sharpness_for_Improving_Post-Training_Quantization_CVPR_2023_paper.pdf)
 >To smoothen the rough loss surfaces, the paper proposes a method that limits the sharpness term in the loss to reflect the impact of quantization noise. Instead of directly optimizing the target bit-width network, an adaptive bit-width reduction scheduler is designed. This scheduler starts from a higher bit-width and continuously reduces it until it reaches the target bit-width. In this way, the increased sharpness term is kept within an appropriate range.
-### Diffusion model
-=======
-- [Diffusion Model](#diffusion-model)
-- [Zero-shot And Data Free Quant](#zero-shot-and-data-free-quant)
->>>>>>> fda9bec066e2039c72d50c04936dda748a2a5a90
 
 ### <a name="Diffusion Model"></a> Diffusion Model
 

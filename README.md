@@ -5,6 +5,7 @@ This repository contains low-bit quantization papers from 2020 to 2025.
 ## Table of Contents
 - [Awesome-Model-Quantization](#awesome-model-quantization)
   - [Table of Contents](#table-of-contents)
+  - [Survey](#survey)
   - [Papers](#papers)
     - [2025](#2025)
     - [2024](#2024)
@@ -13,17 +14,79 @@ This repository contains low-bit quantization papers from 2020 to 2025.
     - [2021](#2021)
     - [2020](#2020)
 
+## Survey
+
+- [arXiv 2025](https://arxiv.org/abs/2505.05530) Low-bit Model Quantization for Deep Neural Networks: A Survey
+
 ## Papers
 
 
 
 ### 2025
+- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119764) QBasicVSR: Temporal Awareness Adaptation Quantization for Video Super-Resolution 
+- [NeurIPS 2025](https://arxiv.org/abs/2502.02631) ParetoQ: Improving Scaling Laws in Extremely Low-bit LLM Quantization
+- [NeurIPS 2025](https://arxiv.org/abs/2504.09629) Quantization Error Propagation: Revisiting Layer-Wise Post-Training Quantization 
+- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/118539) DartQuant: Efficient Rotational Distribution Calibration for LLM Quantization 
+- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/115665) Point4Bit: Post Training 4-bit Quantization for Point Cloud 3D Detection 
+- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119877) Binary Quadratic Quantization: Beyond First-Order Quantization for Real-Valued Matrix Compression 
+- [NeurIPS 2025](https://arxiv.org/abs/2505.12266) PMQ-VE: Progressive Multi-Frame Quantization for Video Enhancement [[code](https://github.com/xiaoBIGfeng/PMQ-VE)] ![GitHub Repo stars](https://img.shields.io/github/stars/xiaoBIGfeng/PMQ-VE)
+- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/115090) VETA-DiT: Variance-Equalized and Temporally Adaptive Quantization for Efficient 4-bit Diffusion Transformers 
+- [NeurIPS 2025](https://arxiv.org/abs/2505.18724) LoTA-QAF: Lossless Ternary Adaptation for Quantization-Aware Fine-Tuning [[code](https://github.com/KingdalfGoodman/LoTA-QAF/blob/main/README.md)] ![GitHub Repo stars](https://img.shields.io/github/stars/KingdalfGoodman/LoTA-QAF)
+- [NeurIPS 2025](https://arxiv.org/abs/2506.13771) LittleBit: Ultra Low-Bit Quantization via Latent Factorization 
+- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/120052) HBLLM: Wavelet-Enhanced High-Fidelity 1-Bit Quantization for LLMs 
+- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/117708) Efficient Multi-bit Quantization Network Training via Weight Bias Correction and Bit-wise Coreset Sampling 
+- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119554) Efficient and Generalizable Mixed-Precision Quantization via Topological Entropy 
+- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119301) QSCA: Quantization with Self-Compensating Auxiliary for Monocular Depth Estimation 
+
+- [ICCV 2025](https://arxiv.org/abs/2404.19248) Scheduling Weight Transitions for Quantization-Aware Training [[code](https://github.com/cvlab-yonsei/TRS)] ![GitHub Repo stars](https://img.shields.io/github/stars/cvlab-yonsei/TRS)
+- [ICCV 2025](https://arxiv.org/abs/2507.16782) Task-Specific Zero-shot Quantization-Aware Training for Object Detection [[code](https://github.com/DFQ-Dojo/dfq-toolkit)] ![GitHub Repo stars](https://img.shields.io/github/stars/DFQ-Dojo/dfq-toolkit)
+- [ICCV 2025](https://arxiv.org/abs/2503.10959) OuroMamba: A Data-Free Quantization Framework for Vision Mamba
+- [ICCV 2025]() Allowing Oscillation Quantization: Overcoming Solution Space Limitation in Low Bit-Width Quantization [[code](https://github.com/muzenc/AOQ)] ![GitHub Repo stars](https://img.shields.io/github/stars/muzenc/AOQ)
+- [ICCV 2025](https://arxiv.org/abs/2506.23516) FedWSQ: Efficient Federated Learning with Weight Standardization and Distribution-Aware Non-Uniform Quantization  [[code](https://github.com/Seongyeol-kim/FedWSQ)] ![GitHub Repo stars](https://img.shields.io/github/stars/Seongyeol-kim/FedWSQ)
+- [ICCV 2025](https://arxiv.org/abs/2412.16553) Semantic Alignment and Reinforcement for Data-Free Quantization of Vision Transformers  [[code](https://github.com/zysxmu/SARDFQ)] ![GitHub Repo stars](https://img.shields.io/github/stars/zysxmu/SARDFQ)
+- [ICCV 2025](https://arxiv.org/abs/2503.06545) QuantCache: Adaptive Importance-Guided Quantization with Hierarchical Latent and Layer Caching for Video Generation [[code](https://github.com/JunyiWuCode/QuantCache)] ![GitHub Repo stars](https://img.shields.io/github/stars/JunyiWuCode/QuantCache)
+- [ICCV 2025](https://arxiv.org/abs/2507.19131) MixA-Q: Revisiting Activation Sparsity for Vision Transformers from a Mixed-Precision Quantization Perspective 
+- [ICCV 2025](https://arxiv.org/abs/2507.12933) DMQ: Dissecting Outliers of Diffusion Models for Post-Training Quantization [[code](https://github.com/LeeDongYeun/dmq)] ![GitHub Repo stars](https://img.shields.io/github/stars/LeeDongYeun/dmq)
+- [ICCV 2025](https://arxiv.org/abs/2503.03088) AHCPTQ: Accurate and Hardware-Compatible Post-Training Quantization for Segment Anything Model
+- [ICCV 2025](https://arxiv.org/abs/2507.22349) MSQ: Memory-Efficient Bit Sparsification Quantization  
+- [ICCV 2025](https://arxiv.org/abs/2402.03666) QuEST: Low-bit Diffusion Model Quantization via Efficient Selective Finetuning  [[code](https://github.com/hatchetProject/QuEST)] ![GitHub Repo stars](https://img.shields.io/github/stars/hatchetProject/QuEST)
+
+- [ICML 2025](https://arxiv.org/abs/2505.05799) MxMoE: Mixed-precision Quantization for MoE with Accuracy and Performance Co-Design [[code](https://github.com/cat538/MxMoE)] ![GitHub Repo stars](https://img.shields.io/github/stars/cat538/MxMoE)
+- [ICML 2025](https://arxiv.org/abs/2505.04877) Learning from Loss Landscape: Generalizable Mixed-Precision Quantization via Adaptive Sharpness-Aware Gradient Aligning 
+- [ICML 2025](https://arxiv.org/html/2412.14363v2) ResQ: Mixed-Precision Quantization of Large Language Models with Low-Rank Residuals [[code](https://github.com/utkarsh-dmx/project-resq)] ![GitHub Repo stars](https://img.shields.io/github/stars/utkarsh-dmx/project-resq)
+- [ICML 2025](https://arxiv.org/abs/2405.14917) SliM-LLM: Salience-Driven Mixed-Precision Quantization for Large Language Models [[code](https://github.com/Aaronhuang-778/SliM-LLM)] ![GitHub Repo stars](https://img.shields.io/github/stars/Aaronhuang-778/SliM-LLM)
+- [ICML 2025](https://arxiv.org/abs/2503.15748v1) PARQ: Piecewise-Affine Regularized Quantization [[code](https://github.com/facebookresearch/parq)] ![GitHub Repo stars](https://img.shields.io/github/stars/facebookresearch/parq)
+- [ICML 2025](https://arxiv.org/abs/2503.22879) Quamba2: A Robust and Scalable Post-training Quantization Framework for Selective State Space Models [[code](https://github.com/enyac-group/Quamba)] ![GitHub Repo stars](https://img.shields.io/github/stars/enyac-group/Quamba)
+- [ICML 2025](https://openreview.net/forum?id=G6DmP9wxeB) LRA-QViT: Integrating Low-Rank Approximation and Quantization for Robust and Efficient Vision Transformers 
+- [ICML 2025](https://arxiv.org/abs/2406.13474) BoA: Attention-aware Post-training Quantization without Backpropagation 
+- [ICML 2025](https://arxiv.org/abs/2505.03804) MoEQuant: Enhancing Quantization for Mixture-of-Experts Large Language Models via Expert-Balanced Sampling and Affinity Guidance [[code](https://github.com/chenzx921020/MoEQuant)] ![GitHub Repo stars](https://img.shields.io/github/stars/chenzx921020/MoEQuant)
+- [ICML 2025](https://arxiv.org/abs/2502.09720) NestQuant: nested lattice quantization for matrix products and LLMs 
+- [ICML 2025](https://arxiv.org/abs/2410.09426) FlatQuant: Flatness Matters for LLM Quantization [[code](https://github.com/ruikangliu/FlatQuant)] ![GitHub Repo stars](https://img.shields.io/github/stars/ruikangliu/FlatQuant)
+- [ICML 2025](https://arxiv.org/abs/2506.20251) Q-resafe: Assessing Safety Risks and Quantization-aware Safety Patching for Quantized Large Language Models [[code](https://github.com/Thecommonirin/Qresafe)] ![GitHub Repo stars](https://img.shields.io/github/stars/Thecommonirin/Qresafe)
+- [ICML 2025](https://arxiv.org/html/2410.09615v1) SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression [[code](https://github.com/Paramathic/slim)] ![GitHub Repo stars](https://img.shields.io/github/stars/Paramathic/slim)
+- [ICML 2025](https://arxiv.org/abs/2410.06020) QT-DoG: Quantization-Aware Training for Domain Generalization [[code](https://github.com/saqibjaved1/QT-DoG)] ![GitHub Repo stars](https://img.shields.io/github/stars/saqibjaved1/QT-DoG)
+- [ICML 2025](https://arxiv.org/abs/2502.06786) Matryoshka Quantization 
+- [ICML 2025](https://arxiv.org/pdf/2505.23651) Merge-Friendly Post-Training Quantization for Multi-Target Domain Adaptation [[code](https://github.com/ewsn1593/HDRQ)] ![GitHub Repo stars](https://img.shields.io/github/stars/ewsn1593/HDRQ)
+- [ICML 2025](https://arxiv.org/abs/2506.22463) Modulated Diffusion: Accelerating Generative Modeling with Modulated Quantization [[code](https://github.com/WeizhiGao/MoDiff)] ![GitHub Repo stars](https://img.shields.io/github/stars/WeizhiGao/MoDiff)
+- [ICML 2025](https://arxiv.org/abs/2505.14371) Layer-wise Quantization for Quantized Optimistic Dual Averaging 
+- [ICML 2025](https://openreview.net/pdf?id=w5fONAEwra) Outlier-Aware Post-Training Quantization for Discrete Graph Diffusion Models 
+- [ICML 2025](https://arxiv.org/abs/2501.01144) BlockDialect: Block-wise Fine-grained Mixed Format Quantization for Energy-Efficient LLM Inference 
+- [ICML 2025](https://arxiv.org/abs/2504.02692) GPTAQ: Efficient Finetuning-Free Quantization with Asymmetric Calibration [[code](https://github.com/Intelligent-Computing-Lab-Panda/GPTAQ)] ![GitHub Repo stars](https://img.shields.io/github/stars/Intelligent-Computing-Lab-Panda/GPTAQ)
+- [ICML 2025](https://arxiv.org/abs/2501.17116) Optimizing Large Language Model Training Using FP4 Quantization 
+- [ICML 2025](https://arxiv.org/abs/2412.04180) SKIM: Any-bit Quantization Pushing The Limits of Post-Training Quantization 
+- [ICML 2025](https://arxiv.org/html/2411.10958v3) SageAttention2: Efficient Attention with Thorough Outlier Smoothing and Per-thread INT4 Quantization [[code](https://github.com/thu-ml/SageAttention)] ![GitHub Repo stars](https://img.shields.io/github/stars/thu-ml/SageAttention)
+- [ICML 2025](https://arxiv.org/abs/2505.22167) Q-VDiT: Towards Accurate Quantization and Distillation of Video-Generation Diffusion Transformers [[code](https://github.com/wlfeng0509/Q-VDiT)] ![GitHub Repo stars](https://img.shields.io/github/stars/wlfeng0509/Q-VDiT)
+- [ICML 2025](https://arxiv.org/abs/2501.12956) GANQ: GPU-Adaptive Non-Uniform Quantization for Large Language Models [[code](https://github.com/Evans-Z/GANQ)] ![GitHub Repo stars](https://img.shields.io/github/stars/Evans-Z/GANQ)
+- [ICML 2025](https://arxiv.org/abs/2505.07004) GuidedQuant: Large Language Model Quantization via Exploiting End Loss Guidance [[code](https://github.com/snu-mllab/GuidedQuant)] ![GitHub Repo stars](https://img.shields.io/github/stars/snu-mllab/GuidedQuant)
+
 - [AAAI 2025](https://arxiv.org/abs/2412.14628) Qua$^2$SeDiMo: Quantifiable Quantization Sensitivity of Diffusion Models [[code](https://github.com/Ascend-Research/Qua2SeDiMo)] ![GitHub Repo stars](https://img.shields.io/github/stars/Ascend-Research/Qua2SeDiMo)
 - [AAAI 2025](https://arxiv.org/abs/2409.14330) Thinking in Granularity: Dynamic Quantization for Image Super-Resolution by Intriguing Multi-Granularity Clues [[code](https://github.com/MmmingS/Granular-DQ)] ![GitHub Repo stars](https://img.shields.io/github/stars/MmmingS/Granular-DQ)
 - [AAAI 2025](https://arxiv.org/pdf/2501.08180) D2-DPM: Dual Denoising for Quantized Diffusion Probabilistic Models [[code](https://github.com/TaylorJocelyn/D2-DPM)] ![GitHub Repo stars](https://img.shields.io/github/stars/TaylorJocelyn/D2-DPM)
 - [AAAI 2025](https://arxiv.org/abs/2412.11549) MPQ-DM: Mixed Precision Quantization for Extremely Low Bit Diffusion Models [[code](https://github.com/cantbebetter2/MPQ-DM)] ![GitHub Repo stars](https://img.shields.io/github/stars/cantbebetter2/MPQ-DM)
+
 - [CVPR 2025](https://arxiv.org/abs/2411.13918) Quantization without Tears 
 - [CVPR 2025](https://arxiv.org/abs/2504.02508) APHQ-ViT: Post-Training Quantization with Average Perturbation Hessian Based Reconstruction for Vision Transformer [[code](https://github.com/GoatWu/APHQ-ViT)] ![GitHub Repo stars](https://img.shields.io/github/stars/GoatWu/APHQ-ViT)
+
 - [ICLR 2025](https://arxiv.org/abs/2405.16406) SpinQuant: LLM quantization with learned rotations [[code](https://github.com/facebookresearch/SpinQuant)] ![GitHub Repo stars](https://img.shields.io/github/stars/facebookresearch/SpinQuant)
 - [ICLR 2025](https://arxiv.org/abs/2407.10032) LeanQuant: Accurate and Scalable Large Language Model Quantization with Loss-error-aware Grid 
 - [ICLR 2025](https://arxiv.org/abs/2312.07950) CBQ: Cross-Block Quantization for Large Language Models 
@@ -141,7 +204,7 @@ This repository contains low-bit quantization papers from 2020 to 2025.
 - [NeurIPS 2023](https://openreview.net/pdf?id=sFGkL5BsPi) Q-DM: An Efficient Low-bit Quantized Diffusion Model 
 - [NeurIPS 2023](https://arxiv.org/pdf/2203.14645) REx: Data-Free Residual Quantization Error Expansion 
 - [NeurIPS 2023](https://arxiv.org/pdf/2305.10657) PTQD: Accurate Post-Training Quantization for Diffusion Models [[code](https://github.com/ziplab/PTQD)] ![GitHub Repo stars](https://img.shields.io/github/stars/ziplab/PTQD)
-- [NeurIPS 2023](https://openreview.net/forum?id=r8LYNleLf9) TexQ: Zero-shot Network Quantization with Texture Feature Distribution Calibration [[code](https://github.com/dangsingrue/TexQ)] ![GitHub Repo stars](https://img.shields.io/github/stars/dangsingrue/TexQ)
+- [NeurIPS 2023](https://openreview.net/forum?id=r8LYNleLf9) TexQ: Zero-shot Network Quantization with Texture Feature Distribution Calibration
 - [NeurIPS 2023](https://openreview.net/pdf?id=N56hAiQvot) PackQViT: Faster Sub-8-bit Vision Transformers via Full and Packed Quantization on the Mobile [[code](https://github.com/PeiyanFlying/PackQViT)] ![GitHub Repo stars](https://img.shields.io/github/stars/PeiyanFlying/PackQViT)
 - [NeurIPS 2023](https://arxiv.org/abs/2305.19268) Intriguing Properties of Quantization at Scale 
 - [NeurIPS 2023](https://arxiv.org/abs/2305.14314) QLORA: Efficient Finetuning of Quantized LLMs  [[code](https://github.com/artidoro/qlora)] ![GitHub Repo stars](https://img.shields.io/github/stars/artidoro/qlora)

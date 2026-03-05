@@ -85,7 +85,8 @@ This repository contains low-bit quantization papers from 2020 to 2026.
 - [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/120052) HBLLM: Wavelet-Enhanced High-Fidelity 1-Bit Quantization for LLMs 
 - [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/117708) Efficient Multi-bit Quantization Network Training via Weight Bias Correction and Bit-wise Coreset Sampling 
 - [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119554) Efficient and Generalizable Mixed-Precision Quantization via Topological Entropy 
-- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119301) QSCA: Quantization with Self-Compensating Auxiliary for Monocular Depth Estimation 
+- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119301) QSCA: Quantization with Self-Compensating Auxiliary for Monocular Depth Estimation
+- [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/116315) Q-Palette: Fractional-Bit Quantizers Toward Optimal Bit Allocation for Efficient LLM Deployment
 
 - [ICCV 2025](https://arxiv.org/abs/2404.19248) Scheduling Weight Transitions for Quantization-Aware Training [[code](https://github.com/cvlab-yonsei/TRS)] ![GitHub Repo stars](https://img.shields.io/github/stars/cvlab-yonsei/TRS)
 - [ICCV 2025](https://arxiv.org/abs/2507.16782) Task-Specific Zero-shot Quantization-Aware Training for Object Detection [[code](https://github.com/DFQ-Dojo/dfq-toolkit)] ![GitHub Repo stars](https://img.shields.io/github/stars/DFQ-Dojo/dfq-toolkit)

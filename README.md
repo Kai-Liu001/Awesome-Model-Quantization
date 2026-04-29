@@ -18,6 +18,7 @@ This repository contains low-bit quantization papers from 2020 to 2026.
 ## Survey
 
 - [arXiv 2025](https://arxiv.org/abs/2505.05530) Low-bit Model Quantization for Deep Neural Networks: A Survey
+- [Claude Survey]() A model quantization survey from claude concerning ICLR 2026.
 
 ## Papers
 

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICLR 2026 模型量化论文全景调研 (2026.04)</title>
+<style>
+:root{--bg:#0f1117;--card:#171b24;--border:#2a2f3a;--text:#d0d5dd;--dim:#8b949e;--accent:#6ea8fe;--green:#4ade80;--yellow:#facc15;--red:#f87171;--purple:#c084fc;--cyan:#22d3ee;--orange:#fb923c;--pink:#f472b6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.78;padding:0}
+.container{max-width:1080px;margin:0 auto;padding:2rem}
+h1{color:#fff;font-size:2.3rem;margin-bottom:.3rem;font-weight:800;letter-spacing:-.5px}
+h1 span{color:var(--accent);font-weight:400;font-size:1rem;display:block;margin-top:.3rem}
+h2{color:var(--accent);font-size:1.55rem;margin:3rem 0 1rem;padding:.5rem .9rem;border-left:4px solid var(--accent);background:rgba(110,168,254,.06);border-radius:0 6px 6px 0}
+h3{color:var(--purple);font-size:1.22rem;margin:1.8rem 0 .6rem}
+h4{color:var(--text);font-size:1.05rem;margin:1.2rem 0 .5rem;font-weight:600}
+.subtitle{color:var(--dim);margin-bottom:2.5rem;font-size:.95rem}
+p{margin:.7rem 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem;margin:1.1rem 0}
+.card-green{border-left:4px solid var(--green)}
+.card-blue,.card-a{border-left:4px solid var(--accent)}
+.card-purple{border-left:4px solid var(--purple)}
+.card-warn{border-left:4px solid var(--red)}
+.card-cyan{border-left:4px solid var(--cyan)}
+.card-orange{border-left:4px solid var(--orange)}
+table{width:100%;border-collapse:collapse;margin:1.1rem 0;font-size:.86rem}
+th,td{border:1px solid var(--border);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:rgba(110,168,254,.08);color:var(--accent);font-weight:600}
+tr:nth-child(even){background:rgba(255,255,255,.015)}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.72rem;font-weight:600;margin:2px}
+.tag-s{background:rgba(74,222,128,.15);color:var(--green)}
+.tag-a{background:rgba(110,168,254,.15);color:var(--accent)}
+.tag-b{background:rgba(250,204,21,.15);color:var(--yellow)}
+.tag-red{background:rgba(248,113,113,.15);color:var(--red)}
+.tag-purple{background:rgba(192,132,252,.15);color:var(--purple)}
+.tag-cyan{background:rgba(34,211,238,.15);color:var(--cyan)}
+.tag-orange{background:rgba(251,146,60,.15);color:var(--orange)}
+.highlight{background:rgba(110,168,254,.08);padding:1.1rem 1.3rem;border-radius:8px;margin:1.1rem 0;border:1px solid rgba(110,168,254,.15)}
+.highlight-green{background:rgba(74,222,128,.06);padding:1.1rem 1.3rem;border-radius:8px;margin:1.1rem 0;border:1px solid rgba(74,222,128,.15)}
+.highlight-warn{background:rgba(248,113,113,.06);padding:1.1rem 1.3rem;border-radius:8px;margin:1.1rem 0;border:1px solid rgba(248,113,113,.15)}
+code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:5px;font-size:.85em;font-family:'JetBrains Mono',monospace}
+pre{background:#12151e;border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;overflow-x:auto;font-size:.82rem;margin:.8rem 0;line-height:1.55}
+pre code{background:none;padding:0}
+.toc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem 1.8rem;margin:1.3rem 0}
+.toc ul{list-style:none;padding-left:0}
+.toc li{margin:.25rem 0;padding-left:1.2rem;position:relative}
+.toc li::before{content:'';position:absolute;left:0;top:.65rem;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.toc a{color:var(--accent);text-decoration:none;font-size:.92rem}
+.toc a:hover{text-decoration:underline}
+.analogy{background:linear-gradient(135deg,rgba(192,132,252,.08),rgba(110,168,254,.08));border:1px solid rgba(192,132,252,.2);border-radius:10px;padding:1.1rem 1.4rem;margin:1rem 0}
+.formula{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.3rem;margin:.7rem 0;font-family:'JetBrains Mono',monospace;font-size:.86rem;color:var(--cyan);line-height:2;overflow-x:auto}
+.svg-container{text-align:center;margin:1.4rem 0}
+.svg-container svg{max-width:100%;height:auto}
+.footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);color:var(--dim);font-size:.8rem;text-align:center}
+.banner{background:linear-gradient(135deg,#1a1f2e,#0f1117);border-bottom:1px solid var(--border);padding:3rem 0 2rem}
+.banner .container{padding-bottom:0}
+.timeline{position:relative;padding-left:2rem;margin:1rem 0}
+.timeline::before{content:'';position:absolute;left:.5rem;top:0;bottom:0;width:2px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:1.2rem;padding:.7rem 1rem;background:rgba(255,255,255,.02);border-radius:6px;border:1px solid var(--border)}
+.timeline-item::before{content:'';position:absolute;left:-1.75rem;top:1rem;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.timeline-date{color:var(--accent);font-weight:600;font-size:.85rem}
+.paper-grid{display:grid;grid-template-columns:1fr;gap:.6rem;margin:1rem 0}
+.paper-row{background:rgba(255,255,255,.02);padding:.7rem 1rem;border-radius:6px;border-left:3px solid var(--accent);font-size:.88rem}
+.paper-row.green{border-left-color:var(--green)}
+.paper-row.purple{border-left-color:var(--purple)}
+.paper-row.orange{border-left-color:var(--orange)}
+.paper-row.cyan{border-left-color:var(--cyan)}
+.paper-row.warn{border-left-color:var(--red)}
+.paper-row b{color:#fff}
+.paper-row .pid{color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:.78rem}
+details{margin:.5rem 0}
+details summary{cursor:pointer;color:var(--accent);font-weight:600;padding:.5rem .7rem;background:rgba(255,255,255,.03);border-radius:4px}
+details[open] summary{margin-bottom:.5rem}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:1.2rem 0}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center}
+.stat-box .num{color:var(--accent);font-size:2rem;font-weight:800;display:block;font-family:'JetBrains Mono',monospace}
+.stat-box .lbl{color:var(--dim);font-size:.82rem;margin-top:.3rem}
+.flex-row{display:flex;gap:1rem;flex-wrap:wrap}
+.flex-col{flex:1;min-width:280px}
+</style>
+</head>
+<body>
+
+<div class="banner">
+<div class="container">
+<h1>ICLR 2026 模型量化论文全景调研
+<span>91 篇接收论文 / 13 个研究方向 / 全方位趋势分析</span>
+</h1>
+<p class="subtitle">从 OpenReview 穷尽检索的 ICLR 2026 量化论文，逐篇深度讲解 + 总体趋势归纳。回答一个核心问题：2026 年模型量化领域，哪些方向已经做透了不值得再做，哪些是仍未解决、值得投入的硬骨头？</p>
+</div>
+</div>
+
+<div class="container">
+
+<div class="toc">
+<h3 style="margin-top:0">目录</h3>
+<ul>
+<li><a href="#ch1">一、量化领域的核心矛盾 — 为什么这事到 2026 还没做完</a></li>
+<li><a href="#ch2">二、ICLR 2026 量化论文总览（94→91 篇）</a></li>
+<li><a href="#ch3">三、发展时间线 — ICLR 2026 在历史中的位置</a></li>
+<li><a href="#ch4">四、分类体系 — 13 个研究方向</a></li>
+<li><a href="#ch5">五、PTQ 主线（GPTQ/AWQ/Rotation 后继者）</a></li>
+<li><a href="#ch6">六、KV cache 量化与长上下文</a></li>
+<li><a href="#ch7">七、扩散与视频生成模型量化</a></li>
+<li><a href="#ch8">八、低精度训练与 FP4/FP8 训练栈</a></li>
+<li><a href="#ch9">九、QAT 与极低比特（≤2-bit）</a></li>
+<li><a href="#ch10">十、混合精度与硬件协同（MXFP4/NVFP4）</a></li>
+<li><a href="#ch11">十一、量化与推理模型（Long-CoT）</a></li>
+<li><a href="#ch12">十二、量化与 RL / Optimizer 状态</a></li>
+<li><a href="#ch13">十三、VLM/VLA/Vision/MoE 跨架构量化</a></li>
+<li><a href="#ch14">十四、理论分析（GPTQ-Babai 等价、Scaling Law、收敛性）</a></li>
+<li><a href="#ch15">十五、关键趋势归纳（5 条共识）</a></li>
+<li><a href="#ch16">十六、值得做的方向 vs 不值得做的方向</a></li>
+<li><a href="#ch17">十七、资源汇总（论文索引 + 链接）</a></li>
+</ul>
+</div>
+
+<!-- ====== CH1 ====== -->
+<h2 id="ch1">一、量化领域的核心矛盾 — 为什么这事到 2026 还没做完</h2>
+
+<div class="analogy">
+<b>🎵 一个类比：把一首交响乐压成 MP3。</b>
+原始信号是 16-bit 浮点（FP16/BF16），有几乎无损的细腻度。要省存储和带宽，得把它压成 4-bit、2-bit 甚至 1-bit。问题是音乐里有些片段（鼓点峰值、特定乐器独奏）能量极强（<i>outlier</i>），如果用一个统一的"音量旋钮"去调，要么峰值削顶失真，要么其他段听不清。<b>量化研究的本质，就是给不同段落动态选不同的"音量旋钮"，并且要让放音设备（GPU）能高效解码。</b>
+</div>
+
+<p>大语言模型的"信号"是权重（W）、激活（A）、KV cache、梯度、优化器状态。把它们压到 4-bit 的吸引力是显存 4×、带宽 4×、Tensor Core 算力 2-4×、单位 token 成本下降一个量级。但每一类信号都有自己的 outlier 模式，每一种压缩方式都要和硬件指令集对齐。这件事看似在 2024 年（QuaRot/SpinQuant 的 W4A4 风暴）就要做完了，但到 2026 年依然有 91 篇 ICLR 论文在做——为什么？</p>
+
+<div class="highlight">
+<b>三条根本原因让量化研究在 2026 仍然热门：</b>
+<ol style="margin-top:.5rem;padding-left:1.4rem">
+<li><b>过训模型反量化</b> — Kumar et al. (ICLR 2025) 证明：训练 token 越多，PTQ 退化越严重。LLaMA-3 (15T)、Qwen3 (36T) 撞墙明显。Tim Dettmers 评为"近期最重要的 paper"。</li>
+<li><b>新硬件格式重塑游戏</b> — NVFP4/MXFP4/MXFP8 不是简单的 INT4 替代品，每种格式有独特的缩放行为，<b>"4-bit"已经不是一个概念</b>，而是 INT4/MXFP4/NVFP4 三套不同的算法-硬件协同。</li>
+<li><b>量化与推理模型的相互作用</b> — DeepSeek-R1 类长 CoT 模型的 W4A4 退化高度任务依赖：常规 PPL/MMLU 几乎无损，但 AIME-120 类硬题最高掉 4×。误差沿 CoT 累积，是 2026 年最热的开放问题。</li>
+</ol>
+</div>
+
+<!-- ====== CH2 ====== -->
+<h2 id="ch2">二、ICLR 2026 量化论文总览（94 → 91 篇）</h2>
+
+<p>本调研从 OpenReview API 用 ~50 个量化相关关键词穷尽扫描 ICLR 2026 全部接收论文（>5300 篇），过滤后得 197 个候选；再经人工边缘案例审计，最终圈定 <b>94 篇</b>送入逐篇 HTML 写作流程。其中有 3 篇被 Sonnet 阅读 PDF 后判定为误判（详见下表 stride 跳过项），实际收录 <b>91 篇</b>真正的模型量化论文。</p>
+
+<div class="stat-row">
+<div class="stat-box"><span class="num">91</span><div class="lbl">最终收录论文数</div></div>
+<div class="stat-box"><span class="num">3</span><div class="lbl">Oral 论文</div></div>
+<div class="stat-box"><span class="num">88</span><div class="lbl">Poster 论文</div></div>
+<div class="stat-box"><span class="num">13</span><div class="lbl">研究方向</div></div>
+</div>
+
+<h3>2.1 按方向分布（一篇可在多个类别）</h3>
+
+<table>
+<tr><th>方向</th><th>论文数</th><th>代表作</th><th>战线饱和度</th></tr>
+<tr><td>PTQ（含 PTQ-analysis）</td><td>38</td><td>TurboBoA, OBR, MR-GPTQ, SliderQuant, SERQ</td><td><span class="tag tag-b">中等</span> 主战场</td></tr>
+<tr><td>Hardware-aware</td><td>21</td><td>MicroMix, MR-GPTQ, AnyBCQ, LogART</td><td><span class="tag tag-s">高速增长</span></td></tr>
+<tr><td>Mixed-precision</td><td>20</td><td>Compute-Optimal QAT, ChanMix, STaMP, MoE-Quant</td><td><span class="tag tag-b">活跃</span></td></tr>
+<tr><td>KV cache quant</td><td>15</td><td>PM-KVQ, ThinKV, ChanMix, KV Transform Coding</td><td><span class="tag tag-s">最热</span></td></tr>
+<tr><td>Quant + Prune / LowRank</td><td>13</td><td>OBR, QWHA, SERQ, CoA-LoRA, SNAP-UQ</td><td><span class="tag tag-b">活跃</span></td></tr>
+<tr><td>Diffusion / Video Quant</td><td>12</td><td>SVDQuant 衍生、QVGen、DVD-Quant、QuantSparse</td><td><span class="tag tag-s">高速增长</span></td></tr>
+<tr><td>Vector quant（含边缘案例）</td><td>10</td><td>DiVeQ, KBVQ-MoE, NuBitQ, Multi-Boolean</td><td><span class="tag tag-b">活跃</span></td></tr>
+<tr><td>Rotation / Hadamard</td><td>8</td><td>ParoQuant, MR-GPTQ, QWHA, CodeQuant, Qronos</td><td><span class="tag tag-red">饱和</span></td></tr>
+<tr><td>QAT</td><td>8</td><td>BBQ, Compute-Optimal QAT, Tequila, Arbitrary Precision</td><td><span class="tag tag-b">复活</span></td></tr>
+<tr><td>Binary / Ternary</td><td>6</td><td>Tequila, PT²-LLM, Multi-Boolean, BEP, Masked Binary U-Net</td><td><span class="tag tag-orange">突破期</span></td></tr>
+<tr><td>Optimizer-quant / Low-precision-training</td><td>5+3</td><td>Metis, MOSS, Low-bit Muon, Adam FP convergence</td><td><span class="tag tag-s">最热</span></td></tr>
+<tr><td>Vision quant（专用）</td><td>4</td><td>InlierQ Object Detection, PTQ Video Matting, SPR²Q, Masked Binary U-Net</td><td><span class="tag tag-a">中等</span></td></tr>
+<tr><td>VLM / VLA quant</td><td>4+1</td><td>QVLA, WSVD, LLaVA-FA, Multi-Boolean</td><td><span class="tag tag-orange">突破期</span></td></tr>
+<tr><td>Quant for RL</td><td>3</td><td>QeRL, QuRL, ATPO（误判）</td><td><span class="tag tag-orange">突破期</span></td></tr>
+<tr><td>MoE quant</td><td>3</td><td>MoE-Quant, CodeQuant, KBVQ-MoE</td><td><span class="tag tag-a">活跃</span></td></tr>
+<tr><td>Quant for Fairness / Adversarial</td><td>2</td><td>TriQDef, Fair Multi-Feature</td><td><span class="tag tag-cyan">小众</span></td></tr>
+<tr><td>Continual Quant</td><td>1</td><td>QGP Continual</td><td><span class="tag tag-cyan">小众</span></td></tr>
+</table>
+
+<h3>2.2 按目标模型分布</h3>
+
+<div class="flex-row">
+<div class="flex-col card card-blue">
+<b>LLM 主流</b>（含 Reasoning-LLM, MoE）<br>
+<span style="color:var(--accent);font-size:1.6rem;font-weight:700">30+ 篇</span>
+<p style="font-size:.85rem;color:var(--dim);margin-top:.5rem">绝对主战场。Reasoning-LLM 单独成势（11 篇）。</p>
+</div>
+<div class="flex-col card card-purple">
+<b>扩散 / 视频生成</b><br>
+<span style="color:var(--purple);font-size:1.6rem;font-weight:700">16 篇</span>
+<p style="font-size:.85rem;color:var(--dim);margin-top:.5rem">Video DiT 量化大爆发。SANA-Video 是 Oral。</p>
+</div>
+<div class="flex-col card card-cyan">
+<b>VLM/VLA/Vision</b><br>
+<span style="color:var(--cyan);font-size:1.6rem;font-weight:700">9 篇</span>
+<p style="font-size:.85rem;color:var(--dim);margin-top:.5rem">QVLA 是首个 VLA 量化工作（Oral 候选水平）。</p>
+</div>
+<div class="flex-col card card-orange">
+<b>SSM / 新架构</b><br>
+<span style="color:var(--orange);font-size:1.6rem;font-weight:700">2-3 篇</span>
+<p style="font-size:.85rem;color:var(--dim);margin-top:.5rem">SSDi8 把 Mamba-2 的 SSD 内部打通 INT8。</p>
+</div>
+</div>
+
+<!-- ====== CH3 时间线 ====== -->
+<h2 id="ch3">三、发展时间线 — ICLR 2026 在历史中的位置</h2>
+
+<div class="svg-container">
+<svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
+<line x1="80" y1="30" x2="80" y2="450" stroke="#2a2f3a" stroke-width="2"/>
+<circle cx="80" cy="50" r="7" fill="#6ea8fe"/>
+<text x="100" y="48" fill="#6ea8fe" font-size="13" font-weight="700">2022</text>
+<text x="100" y="65" fill="#d0d5dd" font-size="11">LLM.int8() 揭示 outlier；GPTQ 起家</text>
+<circle cx="80" cy="100" r="7" fill="#6ea8fe"/>
+<text x="100" y="98" fill="#6ea8fe" font-size="13" font-weight="700">2023</text>
+<text x="100" y="115" fill="#d0d5dd" font-size="11">AWQ / SmoothQuant / OmniQuant 三足；KIVI 启动 KV-quant</text>
+<circle cx="80" cy="150" r="7" fill="#c084fc"/>
+<text x="100" y="148" fill="#c084fc" font-size="13" font-weight="700">2024</text>
+<text x="100" y="165" fill="#d0d5dd" font-size="11">QuaRot/SpinQuant — Rotation 时代；BitNet 1.58；LLaMA-3 撞墙</text>
+<circle cx="80" cy="200" r="7" fill="#4ade80"/>
+<text x="100" y="198" fill="#4ade80" font-size="13" font-weight="700">2025 上</text>
+<text x="100" y="215" fill="#d0d5dd" font-size="11">OSTQuant；SVDQuant（diffusion W4A4）；NVFP4 落地 Blackwell</text>
+<circle cx="80" cy="250" r="7" fill="#4ade80"/>
+<text x="100" y="248" fill="#4ade80" font-size="13" font-weight="700">2025 中</text>
+<text x="100" y="265" fill="#d0d5dd" font-size="11">Scaling Laws for Precision (Kumar)；ParetoQ 系统比较 1-4 bit QAT</text>
+<circle cx="80" cy="300" r="7" fill="#4ade80"/>
+<text x="100" y="298" fill="#4ade80" font-size="13" font-weight="700">2025 下</text>
+<text x="100" y="315" fill="#d0d5dd" font-size="11">DeepSeek-V3 FP8 预训 14.8T；Qwen3 官方 GGUF/AWQ/GPTQ/FP8 全套</text>
+<circle cx="80" cy="370" r="9" fill="#facc15"/>
+<text x="100" y="368" fill="#facc15" font-size="14" font-weight="700">2026 (ICLR — 本调研)</text>
+<text x="100" y="385" fill="#d0d5dd" font-size="11">91 篇——FP4 native + 推理模型量化 + Mamba/MoE/VLA 跨架构 + Optimizer-quant</text>
+<text x="100" y="402" fill="#d0d5dd" font-size="11">Oral: SANA-Video (NVFP4)、Why Low-Precision Training Fails、Robust Arbitrary Precision</text>
+<text x="100" y="425" fill="#d0d5dd" font-size="11" font-style="italic">关键转折：从"如何把 INT4 做对"到"如何把 NVFP4/MXFP4 配套硬件做对"</text>
+</svg>
+</div>
+
+<div class="card card-cyan">
+<h4 style="color:var(--cyan);margin-top:0">从 2024 到 2026 的三大范式转移</h4>
+<table>
+<tr><th>维度</th><th>2024</th><th>2026 (ICLR)</th></tr>
+<tr><td>主流低位格式</td><td>INT4 (Marlin/per-group 128)</td><td>NVFP4 / MXFP4 / FP4 三足并立</td></tr>
+<tr><td>"4-bit"含义</td><td>Weight 量化 + group scale</td><td>Weight + Activation + KV + Optimizer 全 4-bit</td></tr>
+<tr><td>Outlier 处理范式</td><td>Smoothing / Mixed precision</td><td>Rotation 已成事实标准（QuaRot/SpinQuant 后继）</td></tr>
+<tr><td>评估 metric</td><td>WikiText-2 PPL + MMLU</td><td>+AIME / MATH / 长 CoT / FID-视频</td></tr>
+<tr><td>研究焦点</td><td>"如何不掉点"</td><td>"硬件协同 + 长 CoT 推理一致 + native 训练"</td></tr>
+</table>
+</div>
+
+<!-- ====== CH4 分类体系 ====== -->
+<h2 id="ch4">四、分类体系 — 13 个研究方向</h2>
+
+<div class="svg-container">
+<svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg">
+<rect x="380" y="160" width="140" height="60" fill="#171b24" stroke="#6ea8fe" stroke-width="2" rx="8"/>
+<text x="450" y="185" fill="#6ea8fe" font-size="14" text-anchor="middle" font-weight="700">ICLR 2026 量化</text>
+<text x="450" y="205" fill="#d0d5dd" font-size="11" text-anchor="middle">91 篇 / 13 方向</text>
+
+<line x1="450" y1="160" x2="120" y2="60" stroke="#2a2f3a"/>
+<rect x="50" y="40" width="140" height="40" fill="#171b24" stroke="#6ea8fe" rx="6"/>
+<text x="120" y="64" fill="#6ea8fe" font-size="11" text-anchor="middle">PTQ (38)</text>
+
+<line x1="450" y1="160" x2="290" y2="60" stroke="#2a2f3a"/>
+<rect x="220" y="40" width="140" height="40" fill="#171b24" stroke="#facc15" rx="6"/>
+<text x="290" y="64" fill="#facc15" font-size="11" text-anchor="middle">KV-quant (15)</text>
+
+<line x1="450" y1="160" x2="450" y2="60" stroke="#2a2f3a"/>
+<rect x="380" y="40" width="140" height="40" fill="#171b24" stroke="#c084fc" rx="6"/>
+<text x="450" y="64" fill="#c084fc" font-size="11" text-anchor="middle">Diffusion-quant (12)</text>
+
+<line x1="450" y1="160" x2="610" y2="60" stroke="#2a2f3a"/>
+<rect x="540" y="40" width="140" height="40" fill="#171b24" stroke="#4ade80" rx="6"/>
+<text x="610" y="64" fill="#4ade80" font-size="11" text-anchor="middle">Hardware-aware (21)</text>
+
+<line x1="450" y1="160" x2="780" y2="60" stroke="#2a2f3a"/>
+<rect x="710" y="40" width="140" height="40" fill="#171b24" stroke="#fb923c" rx="6"/>
+<text x="780" y="64" fill="#fb923c" font-size="11" text-anchor="middle">Mixed-precision (20)</text>
+
+<line x1="450" y1="220" x2="120" y2="320" stroke="#2a2f3a"/>
+<rect x="50" y="300" width="140" height="40" fill="#171b24" stroke="#22d3ee" rx="6"/>
+<text x="120" y="324" fill="#22d3ee" font-size="11" text-anchor="middle">QAT (8)</text>
+
+<line x1="450" y1="220" x2="290" y2="320" stroke="#2a2f3a"/>
+<rect x="220" y="300" width="140" height="40" fill="#171b24" stroke="#f472b6" rx="6"/>
+<text x="290" y="324" fill="#f472b6" font-size="11" text-anchor="middle">Binary/Ternary (6)</text>
+
+<line x1="450" y1="220" x2="450" y2="320" stroke="#2a2f3a"/>
+<rect x="380" y="300" width="140" height="40" fill="#171b24" stroke="#f87171" rx="6"/>
+<text x="450" y="324" fill="#f87171" font-size="11" text-anchor="middle">Reasoning-LLM (11)</text>
+
+<line x1="450" y1="220" x2="610" y2="320" stroke="#2a2f3a"/>
+<rect x="540" y="300" width="140" height="40" fill="#171b24" stroke="#facc15" rx="6"/>
+<text x="610" y="324" fill="#facc15" font-size="11" text-anchor="middle">Optimizer/RL (8)</text>
+
+<line x1="450" y1="220" x2="780" y2="320" stroke="#2a2f3a"/>
+<rect x="710" y="300" width="140" height="40" fill="#171b24" stroke="#c084fc" rx="6"/>
+<text x="780" y="324" fill="#c084fc" font-size="11" text-anchor="middle">VLM/VLA/Vision (9)</text>
+
+<text x="450" y="370" fill="#8b949e" font-size="10" text-anchor="middle" font-style="italic">同一篇可属于多个方向；这里按主要贡献展示</text>
+</svg>
+</div>
+
+<!-- ====== CH5 PTQ 主线 ====== -->
+<h2 id="ch5">五、PTQ 主线（GPTQ/AWQ/Rotation 后继者）</h2>
+
+<p>PTQ 是 ICLR 2026 数量最多的方向（38 篇）。从 ICLR 2025 的 OSTQuant 之后，PTQ 主线分裂为四条支流：(1) <b>更精的补偿</b>（GPTQ 系列改进）、(2) <b>更好的旋转</b>（Hadamard 后继）、(3) <b>结构化分析</b>（理论等价性 / lattice）、(4) <b>更快的算法</b>（去 BP / 一次过）。</p>
+
+<h3>5.1 GPTQ 补偿与误差控制（5 篇）</h3>
+
+<div class="paper-grid">
+<div class="paper-row green"><span class="pid">[017]</span> <b>TurboBoA</b> — 多通道闭合解把 BoA 顺序量化步数从 128 降到 8（N=16），3-4× 速度，与 QuaRot/OSTQuant 组合刷新 INT2 / W2A4KV4 双 SOTA。</div>
+<div class="paper-row"><span class="pid">[010]</span> <b>Rethinking Residual Errors</b> — 揭示 GPTAQ 把"补偿后输出"当目标的系统偏差，CAE 项加 5% 时间换 LLaMA2-7B C4 PPL 13.60→8.34。</div>
+<div class="paper-row"><span class="pid">[023/025]</span> <b>GPTQ as Babai's Nearest Plane（双独立等价证明）</b> — 两篇独立证明 GPTQ 与 1986 年 Babai 算法等价，自动继承格论误差上界，开启 LLL 改进路径。</div>
+<div class="paper-row"><span class="pid">[051]</span> <b>LogART</b> — 对数后训量化的极限推进，硬件友好 LUT 实现。</div>
+</div>
+
+<h3>5.2 Rotation 后继 — 不再是 Hadamard 一家独大</h3>
+
+<div class="paper-grid">
+<div class="paper-row green"><span class="pid">[006]</span> <b>ParoQuant</b> — Givens 成对旋转替代全 Hadamard，CUDA 完全并行；推理任务 Avg 61.9（vs AWQ 59.5, QTIP 61.0），W4A16。</div>
+<div class="paper-row purple"><span class="pid">[018]</span> <b>MR-GPTQ (Bridging MXFP4 Gap)</b> — <i>关键论文</i>：解析证明 Hadamard 旋转对 NVFP4 (G=16) 有害，提出块级 micro-rotation；MXFP4 W4A4 recovery 87.83% → 93.31%，QuTLASS 内核反超 NVFP4 ~15%。</div>
+<div class="paper-row"><span class="pid">[021]</span> <b>QWHA</b> — Walsh-Hadamard adapter for QA-PEFT，2-bit 极限上 LLaMA-3.1-8B GSM8K +3.94。</div>
+<div class="paper-row"><span class="pid">[031]</span> <b>SliderQuant</b> — 不是新旋转，而是发现"浅/深层比中间层难量化"，三种自适应滑窗（PESW/FSSW/PCSW）；W4A4 LLaMA2-7B PPL 12.73→8.34，无额外推理开销。</div>
+<div class="paper-row"><span class="pid">[054]</span> <b>Qronos</b> — 跨模态（KV/Diffusion）的旋转-补偿统一框架。</div>
+<div class="paper-row"><span class="pid">[064]</span> <b>Quantized VGGT</b> — 把 rotation 范式搬到 Vision Geometry Transformer。</div>
+</div>
+
+<h3>5.3 结构化补偿 / 联合压缩（4 篇）</h3>
+
+<div class="paper-grid">
+<div class="paper-row green"><span class="pid">[008]</span> <b>OBR (Optimal Brain Restoration)</b> — Hessian 群误差闭合解 Δw_R* = −H_RR⁻¹·H_RE·e_E 化解量化偏好平坦 vs 剪枝偏好高方差的根本冲突；W4A4KV4 + 50% 稀疏，LLaMA2-7B PPL 8.40 (vs SparseGPT+GPTQ 12.94)，4.72× 推理加速。</div>
+<div class="paper-row"><span class="pid">[019]</span> <b>SERQ</b> — 单一 Saliency-Aware 低秩矩阵替代 L²QER 的两个串行矩阵，消除推理期在线量化；W4A4 LLaMA-2-7B PPL 5.97。</div>
+<div class="paper-row"><span class="pid">[045]</span> <b>UniQL</b> — 统一量化 + 低秩压缩，目标 SSM/边缘 LLM。</div>
+<div class="paper-row"><span class="pid">[072]</span> <b>GlowQ</b> — Group-shared low-rank approximation，分组共享降低低秩开销。</div>
+</div>
+
+<h3>5.4 PTQ 公式核心（取 OBR 的 Hessian 群补偿为例）</h3>
+
+<div class="formula">
+对 group-wise 量化误差 e_E ∈ ℝ^|E|，未量化区 R 的最优补偿：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Δw_R* = − H_RR⁻¹ · H_RE · e_E<br>
+其中 H = X^T X 是 calibration Hessian，下标 R / E 分别是未量化与已量化通道集合。
+</div>
+
+<p>这条闭合解是 OBS（Optimal Brain Surgeon, 1992）的现代复活——把"删一个权重"换成"动一组权重应对量化-稀疏耦合误差"，统一了 GPTQ/SparseGPT/AWQ 的补偿哲学。</p>
+
+<!-- ====== CH6 KV cache ====== -->
+<h2 id="ch6">六、KV cache 量化与长上下文（15 篇）</h2>
+
+<p>KV cache 量化是 ICLR 2026 增长最快的子方向。原因：长上下文（100K-1M token）+ 推理模型（长 CoT 输出 5K-20K token）让 KV 显存挤压成为部署瓶颈。</p>
+
+<div class="paper-grid">
+<div class="paper-row green"><span class="pid">[052]</span> <b>PM-KVQ</b> — Progressive Mixed-precision KV：长 CoT 中"早期 token 重要、后期 token 可激进降位"。</div>
+<div class="paper-row"><span class="pid">[058]</span> <b>ThinKV</b> — Thought-adaptive：在思考链不同阶段（draft/refine/conclude）用不同 bit-width。</div>
+<div class="paper-row purple"><span class="pid">[039]</span> <b>ChanMix</b> — <i>关键发现</i>：检索通道（retrieval channels）对 2-bit 极敏感；仅升它们到 4-bit，Mistral RULER 从 72.13 恢复到 86.12（接近 86.99 全精度）。</div>
+<div class="paper-row"><span class="pid">[065]</span> <b>Not All Bits Are Equal</b> — 推理模型上的尺度依赖内存策略：不同模型规模需要不同的 KV 配置。</div>
+<div class="paper-row"><span class="pid">[066]</span> <b>KV Transform Coding</b> — 把图像压缩的 transform coding 思想搬到 KV cache。</div>
+<div class="paper-row"><span class="pid">[081]</span> <b>SANA-Video (Oral)</b> — 视频生成中的 block linear diffusion + NVFP4 KV cache，720×1280 / 分钟级视频。</div>
+<div class="paper-row"><span class="pid">[054]</span> <b>Qronos</b> — KV / diffusion 统一旋转补偿。</div>
+<div class="paper-row"><span class="pid">[068]</span> <b>Reasoning Inference Serving Unveiled</b> — 大规模实测：KV 量化在 vLLM/SGLang/TRT-LLM 三家上的差异。</div>
+<div class="paper-row"><span class="pid">[083]</span> <b>Progressive Thought Encoding</b> — 训练阶段引入渐进 KV 压缩，对齐推理时的 KV-quant。</div>
+<div class="paper-row"><span class="pid">[084]</span> <b>CARE</b> — Covariance-aware + rank-enhanced，让 MLA（Multi-head Latent Attention）的 KV 进一步压缩。</div>
+<div class="paper-row"><span class="pid">[085]</span> <b>Multi-Head Low-Rank Attention</b> — Multi-head 各自学低秩，等价 KV 压缩。</div>
+<div class="paper-row"><span class="pid">[087]</span> <b>d²Cache</b> — Diffusion-based LLM 的 dual adaptive cache。</div>
+<div class="paper-row"><span class="pid">[088]</span> <b>Randomization Boosts KV</b> — 随机化（hashing）+ 学习平衡查询负载。</div>
+<div class="paper-row"><span class="pid">[089]</span> <b>Cross-Layer Fusion KV</b> — 跨层重构 KV 缓存。</div>
+<div class="paper-row"><span class="pid">[091]</span> <b>Scaling Attention via Feature Sparsity</b> — 注意力特征稀疏化，配合 KV-quant。</div>
+</div>
+
+<div class="highlight">
+<b>KV cache 量化趋势小结：</b>
+<ul style="margin-top:.5rem;padding-left:1.4rem">
+<li>4-bit KV 在 14B+ 模型 + 长上下文上已基本 lossless（< 1% 退化）；</li>
+<li>2-bit KV 仍在挑战长 CoT，需要 <b>channel-aware</b>（ChanMix）或 <b>thought-adaptive</b>（ThinKV）混合精度才能保住推理质量；</li>
+<li>1-bit KV 仅在向量量化 + 系统协同（Kitty/CommVQ）下勉强可用；</li>
+<li>新方向：MLA / Multi-head Latent 类的"隐式 KV 压缩"开始与显式量化竞争（CARE, MHLA）。</li>
+</ul>
+</div>
+
+<!-- ====== CH7 Diffusion ====== -->
+<h2 id="ch7">七、扩散与视频生成模型量化（12 篇）</h2>
+
+<p>2025 年的 SVDQuant（FLUX.1 W4A4）打开了扩散量化的工程门。2026 年焦点全面转向 <b>视频扩散</b>——参数量更大（5B-30B）、推理时序更长（25-50 步）、KV cache 也长——量化收益更显著。</p>
+
+<table>
+<tr><th>论文</th><th>对象</th><th>bit</th><th>关键贡献</th></tr>
+<tr><td>[007] Gradient-Aligned Calib</td><td>Diffusion</td><td>W4A8</td><td>元学习样本权重，LSUN-Bedrooms FID 3.68→3.40</td></tr>
+<tr><td>[026] QVGen</td><td>Video DiT</td><td>low-bit</td><td>QAT for video</td></tr>
+<tr><td>[029] Quant-dLLM</td><td>Diffusion-LLM</td><td>2-bit</td><td>LLaDA-8B 平均准确率 42.39→54.06</td></tr>
+<tr><td>[037] DVD-Quant</td><td>Video DiT</td><td>W4A4</td><td><b>Data-free</b>，质量 61.82 vs ViDiT-Q 40.10</td></tr>
+<tr><td>[038] PTQ4ARVG</td><td>AutoRegressive Visual</td><td>6-8 bit</td><td>视觉自回归生成专用</td></tr>
+<tr><td>[043] QuantSparse</td><td>Video DiT</td><td>W4A8 + 15%稀疏</td><td>HunyuanVideo-13B PSNR 20.88 vs Q-VDiT 16.85；3.68× 压缩</td></tr>
+<tr><td>[048] Q&C</td><td>Diffusion</td><td>—</td><td>量化 × cache 联合优化</td></tr>
+<tr><td>[050] Sample/Freq Meta-Weight</td><td>Diffusion</td><td>W4A32</td><td>可学习频率权重契合扩散物理；LSUN FID 3.60→3.16</td></tr>
+<tr><td>[076] LongLive</td><td>Video Diffusion</td><td>FP8</td><td>实时交互长视频</td></tr>
+<tr><td>[078] PnP Fidelity</td><td>Diffusion Transformer</td><td>—</td><td>累积误差最小化</td></tr>
+<tr><td>[081] SANA-Video <b>(Oral)</b></td><td>Video Diffusion</td><td>NVFP4</td><td>720×1280 / 分钟级；block linear diffusion</td></tr>
+<tr><td>[094] PQGAN</td><td>Diffusion</td><td>—</td><td>Product-quantised image representation</td></tr>
+</table>
+
+<div class="card card-purple">
+<h4 style="color:var(--purple);margin-top:0">扩散量化的方法学差异</h4>
+<p>纯 LLM 量化方法（GPTQ/AWQ）在扩散模型上效果不稳——原因有三：(1) 激活分布随 timestep 显著漂移，单一校准集不够；(2) 视觉质量评估（FID/CLIP/人评）不收敛，PPL 等价物缺失；(3) 多步推理让单步误差通过 ODE 积累。<b>2026 年看到三种范式涌现：</b></p>
+<ul style="padding-left:1.4rem">
+<li><b>Time-aware calibration</b>（GAC、Sample/Freq Meta-Weight、TFMQ-DM 后继）：让校准分布跟着 timestep 走</li>
+<li><b>Cumulative error compensation</b>（PnP Fidelity、QuantSparse）：显式建模多步误差累积</li>
+<li><b>Native low-bit data type</b>（SANA-Video NVFP4、LongLive FP8）：直接用硬件原生格式，不再做整数 PTQ</li>
+</ul>
+</div>
+
+<!-- ====== CH8 低精度训练 ====== -->
+<h2 id="ch8">八、低精度训练与 FP4/FP8 训练栈</h2>
+
+<p>2024 年 DeepSeek-V3 用 FP8 跑通 671B / 14.8T 预训之后，"native 低精度训练"从 toy 实验变成产线可行。ICLR 2026 在这个方向有三条主线工作：</p>
+
+<div class="paper-grid">
+<div class="paper-row green"><span class="pid">[036]</span> <b>Metis: Training LLMs with FP4</b> — <i>本届最重要的低精度训练论文之一</i>。基于"少于 3% 的奇异值主导权重/激活/梯度分布"的发现，用低秩谱分解 + 稀疏随机采样把 FP4 训练损失 gap 从 3-4% 压到 0.4%；GPT-2 上小幅超越 BF16。</div>
+<div class="paper-row green"><span class="pid">[060]</span> <b>MOSS</b> — Microscaling + Automatic Scaling for FP8 LLM Training。让 FP8 训练自动适配不同层的尺度差异。</div>
+<div class="paper-row purple"><span class="pid">[082]</span> <b>Why Low-Precision Transformer Training Fails (Oral)</b> — 一篇分析论文，定位 Flash Attention 在低精度训练中的失效根源。<i>本届 3 篇 Oral 之一</i>。</div>
+<div class="paper-row"><span class="pid">[020]</span> <b>Adam FP convergence (Theory)</b> — Adam 对二阶矩量化极度敏感（需 q_V = O(1/T²)）；Muon 完全规避二阶矩，理论解释了 LLM 低精度训练中 Muon 优于 AdamW 的现象。</div>
+<div class="paper-row"><span class="pid">[032]</span> <b>Robust Arbitrary Precision (Oral)</b> — 首次定位 STE 反向传播的"量化无感"是 1-bit 训练不稳定根因；闭合形式去噪去量化变换（λ=0.01 全场景无调参）首次实现稳定 A1W1 训练；Gemma3 4B-A4W1 + 2:4 稀疏（C4=0.4517）超越 BF16 Gemma3 1B（0.4494）且体积更小。</div>
+</div>
+
+<h3>8.1 Adam vs Muon 量化敏感度（取自论文 020 的理论）</h3>
+
+<div class="formula">
+Adam 二阶矩量化精度需求：q_V = O(1/T²)（极严苛，T 是训练步数）<br>
+Muon 量化精度需求：q ~ O(√T) ~ O(T^{3/2})（宽松约 T² 倍）<br>
+<br>
+原因：Adam 1/√V_t 对小 V 高度非线性放大；Muon 用 SVD 符号算子直接绕过二阶矩。
+</div>
+
+<!-- ====== CH9 QAT 极低比特 ====== -->
+<h2 id="ch9">九、QAT 与极低比特（≤2-bit）（8+6 篇）</h2>
+
+<p>QAT 在 2024 年被 PTQ + Rotation 抢走风头，但 2026 年因为 <b>BitNet b1.58</b> + <b>Compute-Optimal QAT</b> + <b>BitNet Distillation</b> 等工作复活。核心问题变成：要做到 ≤2-bit，是从头训（BitNet）还是后蒸馏（BitDistiller / Tequila）？</p>
+
+<div class="paper-grid">
+<div class="paper-row green"><span class="pid">[001]</span> <b>BBQ (Bell Box Quantization)</b> — 概率积分变换把 Gauss 拉平为均匀再均匀量化，首次同时满足 ITO 和 compute-efficient；2-bit 比 QuEST 降 PPL 5 点，1-bit 降 18 点；推理加速比 FP16 快 40%。</div>
+<div class="paper-row purple"><span class="pid">[022]</span> <b>Compute-Optimal QAT</b> — <i>本届最重要的 scaling-law 论文</i>。最优 QAT 比例不是固定 10%，而是随 tokens-per-parameter-byte 单调增长；1-bit 极端情况下次优分配多花约 50% 算力。</div>
+<div class="paper-row"><span class="pid">[014]</span> <b>QAT for Ultra-Low-Bit Reasoning</b> — 2-bit Qwen3-8B 在 5 项推理基准平均 55.1%（vs PTQ baseline ~4%），不足 1B tokens 微调超越 BitNet1.58 2B4T 用 4 万亿 token 训出来的（MATH-500: 80.4 vs 43.4）。</div>
+<div class="paper-row"><span class="pid">[042]</span> <b>Tequila (Trapping-free Ternary)</b> — 解决 ternary QAT 的"陷阱"问题，硬件友好。</div>
+<div class="paper-row"><span class="pid">[062]</span> <b>PT²-LLM (Post-Training Ternarization)</b> — 后训三值化，无需 from-scratch。</div>
+<div class="paper-row"><span class="pid">[074]</span> <b>BEP (Binary Error Propagation)</b> — Binary NN 训练新算法。</div>
+<div class="paper-row"><span class="pid">[070]</span> <b>Multi-Boolean Architecture</b> — 多 boolean 层架构，二值化的工程实践。</div>
+<div class="paper-row"><span class="pid">[069]</span> <b>Masked Binary U-Net</b> — Image segmentation 二值 U-Net + Tensor Core 加速。</div>
+</div>
+
+<!-- ====== CH10 Mixed precision / Hardware ====== -->
+<h2 id="ch10">十、混合精度与硬件协同（MXFP4/NVFP4）（20+21 篇）</h2>
+
+<p>本届最显著的趋势：<b>"算法-硬件协同"取代"纯算法 PTQ"</b>。Blackwell 上 NVFP4/MXFP4 落地后，新一代 PTQ 必须考虑 block 16 / block 32 / E8M0 vs E4M3 scale 等硬件细节，否则在新卡上无法发挥。</p>
+
+<div class="paper-grid">
+<div class="paper-row green"><span class="pid">[047]</span> <b>MicroMix (NVIDIA)</b> — 利用 Blackwell FP4 Tensor Core 的混合精度（MXFP4 + MXFP6 + MXFP8）；论文提到"INT4 kernels fail to fully exploit FP4 capability due to mismatched data formats"，用 micro-scaling 充分发挥新硬件。</div>
+<div class="paper-row purple"><span class="pid">[018]</span> <b>MR-GPTQ (MXFP4 Bridging)</b> — 上文已介绍。<b>关键贡献：解析证明 Hadamard 旋转对 NVFP4 (G=16) 有害</b>。</div>
+<div class="paper-row purple"><span class="pid">[055]</span> <b>Is Finer Better? (Microscaling Limits)</b> — <i>分析论文</i>：探讨 microscaling 块大小（Group=16 vs 32 vs 64）的精度极限。</div>
+<div class="paper-row"><span class="pid">[027]</span> <b>AnyBCQ</b> — Hardware Efficient flexible Binary-Coded Quantization，多精度可切换。2-bit MMLU 35.96 vs Any-Precision LLM 24.66 (+11.3)。</div>
+<div class="paper-row"><span class="pid">[080]</span> <b>To Compress or Not?</b> — 用指数集中（exponent concentration）做无损 GenAI 模型权重压缩。</div>
+<div class="paper-row"><span class="pid">[009]</span> <b>STaMP (Sequence Mixed Precision)</b> — DCT/DWT 序列变换 + 混合精度激活，与 Hadamard 类正交叠加。</div>
+<div class="paper-row"><span class="pid">[011]</span> <b>MoE Quant w/ Theoretical Guarantee</b> — 用路由器 l₂ 范数变化量 Λ_s 作为专家敏感度信号；零 GPU 校准开销，Mixtral 8x22B 仍优于需要 350GB+6000s 的 PMQ。</div>
+<div class="paper-row"><span class="pid">[067]</span> <b>Prune-then-Quantize or vice versa?</b> — 系统研究压缩顺序对联合压缩的影响。</div>
+<div class="paper-row"><span class="pid">[013]</span> <b>QeRL</b> — NVFP4 + RL 训练加速；Qwen2.5-7B GSM8K 达 90.8%（vs 全参 91.2%），比 QLoRA 快 1.5-2×、显存仅 5.9 GB。</div>
+<div class="paper-row"><span class="pid">[075]</span> <b>NLI</b> — Non-uniform Linear Interpolation 近似非线性算子（Softmax/SiLU）的硬件友好实现。</div>
+</div>
+
+<div class="card card-warn">
+<h4 style="color:var(--red);margin-top:0">⚠️ 关键反直觉发现：MR-GPTQ 揭示 Hadamard 在 NVFP4 上失效</h4>
+<p>MR-GPTQ 论文从解析角度证明：随机 Hadamard 旋转把高 kurtosis 激活变成高斯，但 NVFP4（G=16, scale=E4M3）的最优分布<b>不是高斯</b>，而是"块内方差差异化"形态——Hadamard 反而抹平了这种差异，导致 recovery 下降。</p>
+<p>这意味着 <b>QuaRot/SpinQuant 不能直接套用到 NVFP4</b>，必须用块级 micro-rotation（仅在 16-channel block 内旋转）。这是 2024 → 2026 范式转移的具体技术体现：旋转<i>本身</i>没错，但旋转的<i>粒度</i>必须与硬件块大小对齐。</p>
+</div>
+
+<!-- ====== CH11 推理模型 ====== -->
+<h2 id="ch11">十一、量化与推理模型（Long-CoT）（11 篇）</h2>
+
+<p>这是 ICLR 2026 最具差异性的方向。问题陈述：DeepSeek-R1 / OpenAI-o1 类推理模型输出 5K-20K token 的长 CoT，常规 PPL/MMLU 在 W4A4 上看着 lossless（< 1% 退化），但 AIME-120 类硬题最高掉 4×。误差沿 CoT 累积。</p>
+
+<div class="paper-grid">
+<div class="paper-row green"><span class="pid">[057]</span> <b>When Reasoning Meets Compression</b> — <i>本届最系统的分析论文</i>：揭示量化对推理模型的非均匀影响——难题退化更严重。</div>
+<div class="paper-row"><span class="pid">[006]</span> <b>ParoQuant</b> — Reasoning 推理任务 Avg 61.9（最强 W4A16 之一）。</div>
+<div class="paper-row"><span class="pid">[014]</span> <b>QAT for Ultra-Low-Bit Reasoning</b> — 2-bit Qwen3-8B 推理 5 项基准 55.1%，超越 BitNet1.58 2B4T。</div>
+<div class="paper-row"><span class="pid">[028]</span> <b>Low-bit Muon</b> — Newton-Schulz 正交化使顶部奇异子空间量化误差被放大 40×；GRASP 8-bit 子空间 + 4-bit 残差，1.1B 预训 PPL 与 fp32 完全持平。</div>
+<div class="paper-row"><span class="pid">[031]</span> <b>SliderQuant</b> — DeepSeek-R1-Distill-Qwen-14B W4A16 几乎无损（MATH-500 95.00→94.60）。</div>
+<div class="paper-row"><span class="pid">[040]</span> <b>QuRL</b> — INT8 RL 训练，DeepScaleR 上 55.48 vs 全精 56.40，差距仅 0.92；32B 模型 Rollout 吞吐 +83%。</div>
+<div class="paper-row"><span class="pid">[047]</span> <b>MicroMix</b> — 推理 LLM 上 NVFP4 mixed-precision SOTA。</div>
+<div class="paper-row"><span class="pid">[052/058/065]</span> 三篇 Long-CoT KV 量化（PM-KVQ / ThinKV / Not All Bits Are Equal）。</div>
+<div class="paper-row"><span class="pid">[068]</span> <b>Reasoning Inference Serving Unveiled</b> — 大规模实测推理模型在不同框架的量化表现。</div>
+<div class="paper-row"><span class="pid">[083]</span> <b>Progressive Thought Encoding</b> — 训练时引入渐进 KV 压缩。</div>
+</div>
+
+<!-- ====== CH12 Optimizer/RL ====== -->
+<h2 id="ch12">十二、量化与 RL / Optimizer 状态（5+3 篇）</h2>
+
+<p>新兴子方向：把量化从"推理压缩"扩展到"训练 / RL 加速"。</p>
+
+<div class="paper-grid">
+<div class="paper-row green"><span class="pid">[013]</span> <b>QeRL</b> — <i>反直觉发现</i>：量化噪声在 RL 中充当隐式探索机制（与 SFT 中的有害效果相反），NVFP4 + AQN 让 Qwen2.5-7B GSM8K 达 90.8%（追平全参 91.2%）。</div>
+<div class="paper-row"><span class="pid">[040]</span> <b>QuRL</b> — Importance Sampling 长期漂移 + 权重更新失效两个挑战；ACR + UAQ 修复。</div>
+<div class="paper-row"><span class="pid">[002]</span> <b>Beyond Outliers (Optimizers Quant)</b> — 不同优化器训出来的模型量化敏感度差异巨大：Muon 训出来的 1.5B 模型 W4A4 仅剩 47.75%（最差），Shampoo 训的 760M 仅掉 0.46pp。</div>
+<div class="paper-row"><span class="pid">[028]</span> <b>Low-bit Muon (GRASP)</b> — 优化器状态量化，混合精度。</div>
+<div class="paper-row"><span class="pid">[061]</span> <b>QGP Continual Learning</b> — 量化梯度投影，持续学习场景。</div>
+<div class="paper-row"><span class="pid">[041]</span> <b>QZO (Zeroth-Order)</b> — 仅扰动连续量化缩放因子绕开"ZO 不兼容量化"的矛盾，Llama-2-7B SQuAD F1=85.5（5GB）超越 MeZO（14.8GB）。</div>
+<div class="paper-row"><span class="pid">[005]</span> <b>DPQuant</b> — 差分隐私 + FP4 训练，PLS + LLP 把 FP4 量化方差压回可控（FP16 baseline 的 1×），90% 层量化下理论 2.21× 加速 + 精度损失 ≤ 2%。</div>
+</div>
+
+<!-- ====== CH13 跨架构 ====== -->
+<h2 id="ch13">十三、VLM/VLA/Vision/MoE 跨架构量化（9+3 篇）</h2>
+
+<div class="paper-grid">
+<div class="paper-row green"><span class="pid">[044]</span> <b>QVLA</b> — <i>首个 Vision-Language-Action 量化工作</i>。揭示 VLA 各通道差异：动作 token 比视觉/语言 token 量化敏感度高一个量级；low-bit 下保持机械臂控制可用性。</div>
+<div class="paper-row"><span class="pid">[056]</span> <b>WSVD</b> — Weighted Low-Rank Approximation for VLM。</div>
+<div class="paper-row"><span class="pid">[063]</span> <b>LLaVA-FA</b> — Fourier Approximation for compressing LMM。</div>
+<div class="paper-row"><span class="pid">[070]</span> <b>Multi-Boolean LLMs</b> — 二值架构。</div>
+<div class="paper-row"><span class="pid">[015]</span> <b>InlierQ</b> — 目标检测 PTQ：用梯度 L1 范数定义体积显著性，EM 高斯混合分内点/异常点；W4A4 下 2D mAP +2.0%, 3D LiDAR mAP +3.2%。</div>
+<div class="paper-row"><span class="pid">[033]</span> <b>PTQ for Video Matting</b> — VM 数据集 W4A4 MAD 20.81 vs 次优 QDrop 24.36 (-15%)。</div>
+<div class="paper-row"><span class="pid">[046]</span> <b>SPR²Q</b> — 图像超分辨率 PTQ。</div>
+<div class="paper-row"><span class="pid">[064]</span> <b>Quantized VGGT</b> — Visual Geometry Grounded Transformer 量化。</div>
+<div class="paper-row"><span class="pid">[030]</span> <b>SSDi8</b> — Mamba-2 SSD 内部首个完整持久 INT8 路径，最高 1.47× 加速。</div>
+<div class="paper-row"><span class="pid">[011/012/053]</span> MoE 三连：MoE-Quant（理论保证）/ CodeQuant（聚类+旋转）/ KBVQ-MoE（KLT-SVD VQ）。</div>
+</div>
+
+<!-- ====== CH14 理论 ====== -->
+<h2 id="ch14">十四、理论分析（GPTQ-Babai 等价、Scaling Law、收敛性）</h2>
+
+<p>本届理论论文异常密集——这是量化领域走向"成熟科学"的标志。当一个领域开始反思"我们之前在干什么 / 为什么 work"时，说明工程主战场已逐步收敛。</p>
+
+<table>
+<tr><th>论文</th><th>定理 / 结论</th><th>价值</th></tr>
+<tr><td>[023] GPTQ as Babai's Nearest Plane</td><td>GPTQ 与 1986 年格论 Babai 算法严格等价（坐标系差异）</td><td>自动继承格论误差上界；指明 LLL 改进路径</td></tr>
+<tr><td>[025] Lattice Geometry of NN Quantization</td><td>同上独立证明，更短</td><td>两组独立小组同时发现，验证可信度</td></tr>
+<tr><td>[004] Linear Regression under Quantization</td><td>FP 量化（乘性误差）维度无关；INT 量化（加性误差）维度发散</td><td>首次给出 FP &gt; INT 的精确理论条件</td></tr>
+<tr><td>[020] Adam FP Convergence</td><td>Adam q_V=O(1/T²)，Muon q=O(√T)~O(T^{3/2})</td><td>解释为何 LLM 低精度训练 Muon &gt; AdamW</td></tr>
+<tr><td>[022] Compute-Optimal QAT</td><td>最优 QAT 比例随 tokens-per-param-byte 单调增长，1-bit 次优多花 50% 算力</td><td>给出 QAT 的 Chinchilla 式 scaling law</td></tr>
+<tr><td>[003] Training Dynamics Impact PTQ</td><td>量化误差突变由学习率衰减触发，不是 token 数</td><td><b>反驳"训得越多越难量化"主流结论</b>，给出 LAWA 干预法</td></tr>
+<tr><td>[032] Robust Arbitrary Precision (Oral)</td><td>STE 反向传播"量化无感"是 1-bit 训练不稳定的根因</td><td>首次稳定 A1W1 训练；闭合形式去噪去量化</td></tr>
+<tr><td>[011] MoE Theoretical Guarantee</td><td>路由器 l₂ 范数变化量 Λ_s 作为专家敏感度信号有理论保证</td><td>零 GPU 校准开销的 MoE 混合精度</td></tr>
+</table>
+
+<div class="card card-cyan">
+<h4 style="color:var(--cyan);margin-top:0">理论收敛带来的两个明显趋势</h4>
+<p><b>趋势 1：量化研究从"经验调优"走向"几何 / 优化理论支撑"</b>。GPTQ-Babai 等价、Lattice 几何、FP vs INT 的 d→∞ 收敛性，都让算法设计有了第一性原理依据。</p>
+<p><b>趋势 2：scaling law 化</b>。Compute-Optimal QAT 给出 QAT 的"Chinchilla 公式"，预测最优 QAT 比例。下一步可能出现 PTQ 版的 scaling law（已被 [003] 论文动摇了基线）。</p>
+</div>
+
+<!-- ====== CH15 5 大共识 ====== -->
+<h2 id="ch15">十五、关键趋势归纳（5 条共识）</h2>
+
+<div class="card card-green">
+<h4 style="color:var(--green);margin-top:0">共识 1：Rotation 已是 W4A4 事实标准，但"旋转粒度"必须与硬件块对齐</h4>
+<p>QuaRot/SpinQuant 在 LLaMA-2 上把 W4A4KV4 拉到 99% 性能保留——这条战线在 70B 大模型上基本结束。但 LLaMA-3-8B / Qwen3-8B 仍掉 5+ 点；MR-GPTQ 进一步揭示 NVFP4 必须用 block-16 micro-rotation 而非全矩阵 Hadamard。<b>"如何旋"已经不是问题，"以什么粒度旋"才是 2026 年新焦点。</b></p>
+</div>
+
+<div class="card card-green">
+<h4 style="color:var(--green);margin-top:0">共识 2：NVFP4 重塑"4-bit"含义；MXFP4 因 E8M0 power-of-2 缩放天然弱 ~10% recovery</h4>
+<p>B200 上 NVFP4 实测准确率 < 1% 退化于 FP8，吞吐 2× FP8、成本 0.130 vs 0.182 美元/M tokens。但 MXFP4 因 scale 是 E8M0（power-of-2）天然不准，MR-GPTQ 把 LLaMA-3.1-8B 的 MXFP4 recovery 从 73% 拉到 93% 才追平 NVFP4。<b>2026 主战场是 INT4 / MXFP4 / NVFP4 的算法-硬件-框架协同。</b></p>
+</div>
+
+<div class="card card-green">
+<h4 style="color:var(--green);margin-top:0">共识 3：量化 + 推理模型是 2025-2026 最热的开放问题</h4>
+<p>DeepSeek-R1 distill-Qwen-32B 在 W4A4KV4 上 AIME-120 掉 3.9%，7B/1.5B 直接掉 > 10%。长 CoT 上量化误差累积——常规 PPL/MMLU 在 4-bit 看着 lossless，但 AIME/MATH 类硬题"难度越高、退化越大"（最高 4× gap）。<b>本届 11 篇 reasoning-quant 论文是 2026 年最有立论空间的方向。</b></p>
+</div>
+
+<div class="card card-green">
+<h4 style="color:var(--green);margin-top:0">共识 4：低精度训练不再是 toy；FP8 是产线、FP4 已可行</h4>
+<p>DeepSeek-V3 671B / 14.8T token FP8 预训跑通；Metis 把 FP4 训练 gap 从 3-4% 压到 0.4%；NVIDIA 宣称 NVFP4 训练"16-bit 精度 + 4-bit 速度"。<b>2026-2027 将看到首批 native NVFP4 / MXFP8 预训的 7B+ 开源模型。</b></p>
+</div>
+
+<div class="card card-green">
+<h4 style="color:var(--green);margin-top:0">共识 5：量化研究开始走向"成熟科学"——理论收敛 + scaling law 化</h4>
+<p>本届 8 篇理论论文（占总数 ~9%）构成历届最高比例：GPTQ-Babai 等价、Lattice 几何、Adam vs Muon 收敛、Compute-Optimal QAT scaling law。这通常发生在一个领域工程主战场逐步收敛、需要第一性原理整合的时候。<b>下一步可能出现 PTQ 版 Chinchilla 公式。</b></p>
+</div>
+
+<!-- ====== CH16 值得 vs 不值得 ====== -->
+<h2 id="ch16">十六、值得做的方向 vs 不值得做的方向</h2>
+
+<h3>16.1 已经做透了的方向（不建议再做）</h3>
+
+<div class="highlight-warn">
+<table>
+<tr><th>方向</th><th>为什么饱和</th><th>例外（仍可做的子问题）</th></tr>
+<tr><td>W8A8 LLM 量化</td><td>SmoothQuant 已 essentially lossless；FP8 兜底</td><td>Mamba/SSM 等新架构的 W8A8（如 SSDi8）</td></tr>
+<tr><td>大模型（70B+）weight-only W4A16</td><td>OSTQuant 已推到 0.29 点退化</td><td>FP4 / NVFP4 native 上的 W4A16 等价问题</td></tr>
+<tr><td>W4A4 在 LLaMA-2 系列</td><td>QuaRot/SpinQuant 99% 保留</td><td>同算法到 LLaMA-3 / Qwen3 仍有 5+ 点 gap</td></tr>
+<tr><td>2-bit KV 14B+ 常规任务</td><td>< 0.5 PPL 退化已经 1M-10M context（KVQuant）</td><td>2-bit KV 长 CoT 推理任务（仍掉 1-3 点）</td></tr>
+<tr><td>校准集大小研究</td><td>128-1024 个 1024-token sample 已足够（共识）</td><td>—</td></tr>
+<tr><td>纯 Hadamard 旋转的进一步优化</td><td>QuaRot/SpinQuant/OSTQuant 已经接近上界</td><td>Hadamard 与新硬件块大小（NVFP4 G=16）的协同</td></tr>
+<tr><td>PTQ 与 RTN/AbsMax 的边角对比</td><td>大量论文已对比；增量 < 0.5 点</td><td>—</td></tr>
+</table>
+</div>
+
+<h3>16.2 仍是公开问题（值得做）</h3>
+
+<div class="highlight-green">
+<table>
+<tr><th>方向</th><th>瓶颈与机会</th><th>本届相关工作</th></tr>
+<tr><td><b>小模型（&lt; 7B）极低位 PTQ/QAT</b></td><td>W4A4 在 1.5B-7B 上仍掉 10+ 点；on-device 部署硬骨头</td><td>BBQ [001], InlierQ [015] 边缘场景</td></tr>
+<tr><td><b>推理模型量化（reasoning quantization）</b></td><td><i>2025-2026 最热</i>。长 CoT 误差累积，AIME 类硬题 W4A4 掉 4-10%</td><td>[057], [014], [040], [065], [058], [083]</td></tr>
+<tr><td><b>过训模型的 PTQ ceiling</b></td><td>LLaMA-3 (15T)、Qwen3 (36T) 撞墙；需新 precision-aware scaling law</td><td>[003] 反驳了"训得越久越差"的简单论断</td></tr>
+<tr><td><b>MXFP4 vs NVFP4 vs INT4 算法-硬件协同</b></td><td>三种"4-bit"性能差异 ~10%；新算法须区分对待</td><td>[018] MR-GPTQ, [047] MicroMix, [055] Microscaling Limits</td></tr>
+<tr><td><b>ternary / binary 在 70B+</b></td><td>BitNet scaling law 未验证到 70B+；BitNet Distillation 是绕开方案</td><td>[042] Tequila, [062] PT²-LLM, [014] Ultra-Low-Bit Reasoning</td></tr>
+<tr><td><b>VLM/VLA 视觉模态量化</b></td><td>视觉 encoder outlier 模式与 LLM body 不同；VLA 动作 token 极敏感</td><td>[044] QVLA, [056] WSVD, [063] LLaVA-FA</td></tr>
+<tr><td><b>扩散模型客观质量 metric</b></td><td>FID/CLIP 不够细，人评太贵；缺"扩散版 PPL"</td><td>本届 12 篇 diffusion 量化都在用混合 metric</td></tr>
+<tr><td><b>量化与长上下文互动</b></td><td>100K-1M context 下误差是否随 token 累积？2-bit needle-in-haystack 已开始失效</td><td>[052] PM-KVQ, [066] KV Transform Coding, [088] Random KV</td></tr>
+<tr><td><b>量化感知预训练（NVFP4 native pretrain）</b></td><td>FP8 已通；FP4 / NVFP4 native scaling law 尚未稳定</td><td>[036] Metis, [060] MOSS, [032] Robust Arbitrary Precision</td></tr>
+<tr><td><b>量化 × RL / RLHF 相容性</b></td><td>RL 训完的模型量化退化更大；原因不明</td><td>[013] QeRL, [040] QuRL — 已有突破口</td></tr>
+<tr><td><b>混合精度搜索的 sample efficiency</b></td><td>IMPQ/SliM-LLM/ScaleBITS 仍是计算昂贵 ILP</td><td>[011] MoE 用路由 l₂ 是低成本启发式</td></tr>
+<tr><td><b>Optimizer 状态量化（4-bit Adam/Muon）</b></td><td>Adam 二阶矩对量化极敏感；Muon 友好但还在演化</td><td>[020] Adam FP, [028] Low-bit Muon, [061] QGP</td></tr>
+</table>
+</div>
+
+<h3>16.3 我们的研究方向建议</h3>
+
+<div class="card card-purple">
+<h4 style="color:var(--purple);margin-top:0">如果你要在 2026-2027 入场量化，三条最高 ROI 路线：</h4>
+<ol style="padding-left:1.4rem">
+<li><b>路线 A：Reasoning-quant 深耕</b>。集中攻"长 CoT 量化误差累积"。题目可以从「找到 quantization 触发推理崩塌的 token-level signature」起步——这个问题没人系统做过，且通往可发顶会的具体子问题（量化感知 thinking budget / KV-quant + reasoning loss alignment）。</li>
+<li><b>路线 B：MXFP4-native 算法</b>。Blackwell GPU 大量铺货后，全部新 PTQ 算法都要在 NVFP4/MXFP4 上重做一遍。MR-GPTQ 只是开端；下一步是 NVFP4 native QAT、NVFP4 KV cache、NVFP4 Diffusion。门槛是要有 B200/RTX 5090。</li>
+<li><b>路线 C：Optimizer-quant + RL</b>。QeRL/QuRL 已经证明 RL 训练量化可行，但只触及表层。Adam 二阶矩量化（[020] 给出理论困难）+ RL 训练（[013/040] 给出实验路径）的交集是未开垦的高价值区。</li>
+</ol>
+</div>
+
+<div class="card card-warn">
+<h4 style="color:var(--red);margin-top:0">⚠️ 不建议入场的两类研究</h4>
+<ul style="padding-left:1.4rem">
+<li><b>不要再做 INT4 weight-only PTQ on LLaMA-2-7B/13B/70B</b>。这是 2024-2025 的主战场，已经被 OSTQuant/QuaRot/SpinQuant/AWQ 等十数个工作压扁，每个新算法只能在小数点后两位刷新；ICLR/NeurIPS 评审已经审美疲劳。</li>
+<li><b>不要再做"我们改进了 SmoothQuant 在 OPT-1.3B 上的 W8A8 PPL"</b>。这是 2023 年 idea，2026 年提交基本不会过。</li>
+</ul>
+</div>
+
+<!-- ====== CH17 资源 ====== -->
+<h2 id="ch17">十七、资源汇总</h2>
+
+<h3>17.1 关键 baseline 论文（2022-2025）</h3>
+
+<ul>
+<li><a href="https://arxiv.org/abs/2210.17323" style="color:var(--accent)">GPTQ (Frantar et al., ICLR 2023)</a> — PTQ 起点</li>
+<li><a href="https://arxiv.org/abs/2306.00978" style="color:var(--accent)">AWQ (Lin et al., MLSys 2024)</a> — 激活感知缩放</li>
+<li><a href="https://arxiv.org/abs/2211.10438" style="color:var(--accent)">SmoothQuant (Xiao et al., ICML 2023)</a> — outlier 迁移</li>
+<li><a href="https://arxiv.org/abs/2308.13137" style="color:var(--accent)">OmniQuant (Shao et al., ICLR 2024)</a> — 可微 PTQ</li>
+<li><a href="https://arxiv.org/abs/2404.00456" style="color:var(--accent)">QuaRot (Ashkboos et al., 2024)</a> — Hadamard 旋转</li>
+<li><a href="https://arxiv.org/abs/2405.16406" style="color:var(--accent)">SpinQuant (Liu et al., ICLR 2025)</a> — 学习旋转</li>
+<li><a href="https://arxiv.org/abs/2402.02750" style="color:var(--accent)">KIVI (Liu et al., ICML 2024)</a> — KV 量化起点</li>
+<li><a href="https://www.jmlr.org/papers/volume26/24-2050/24-2050.pdf" style="color:var(--accent)">BitNet b1.58 (Ma et al., 2024)</a> — Ternary QAT</li>
+<li><a href="https://arxiv.org/abs/2411.04330" style="color:var(--accent)">Scaling Laws for Precision (Kumar et al., ICLR 2025)</a> — 训得越久越难量化</li>
+<li><a href="https://hanlab.mit.edu/projects/svdquant" style="color:var(--accent)">SVDQuant (Li et al., ICLR 2025 spotlight)</a> — Diffusion W4A4</li>
+</ul>
+
+<h3>17.2 工业部署框架</h3>
+
+<table>
+<tr><th>框架</th><th>支持的量化格式</th></tr>
+<tr><td>vLLM</td><td>AutoAWQ, GPTQModel, BitsAndBytes, GGUF, INT4 W4A16, INT8 W8A8, FP8 W8A8, NVFP4/MXFP4 (via NVIDIA Model Optimizer), TorchAO, AMD Quark, Quantized KV Cache</td></tr>
+<tr><td>TensorRT-LLM</td><td>W4A16, W4A16_AWQ, FP8, FP8_PER_CHANNEL_PER_TOKEN, NVFP4, MXFP4, MXFP8</td></tr>
+<tr><td>SGLang</td><td>NVFP4 via NVIDIA Model Optimizer 互通</td></tr>
+<tr><td>HF Transformers</td><td>BitsAndBytes, GPTQ, AWQ, AQLM, HQQ, quanto, torchao</td></tr>
+</table>
+
+<h3>17.3 官方量化模型</h3>
+
+<ul>
+<li>Qwen3（2025-05-12 发布）：GGUF/AWQ/GPTQ/FP8 全套，0.6B - 397B-A17B (MoE)</li>
+<li>LLaMA-3.1-8B-NVFP4, LLaMA-3.3-70B-NVFP4（NVIDIA 发布）</li>
+<li>DeepSeek-V3：原生 FP8 预训权重</li>
+<li>DeepSeek-R1：Red Hat / Neural Magic 发布 W4A16 / W8A8 / FP8 量化版（accuracy recovery > 99%）</li>
+<li>Qwen2.5-VL：官方 AWQ 3B/7B/72B</li>
+<li>FLUX.1-dev：Nunchaku 引擎 + SVDQuant W4A4</li>
+</ul>
+
+<div class="footer">
+ICLR 2026 模型量化论文全景调研 · 编纂日期：2026-04-26<br>
+作者：刘楷 + Claude
+</div>
+
+</div>
+</body>
+</html>

@@ -72,6 +72,92 @@ This repository contains low-bit quantization papers from 2020 to 2026.
 - [ICLR 2026](https://arxiv.org/pdf/2510.26771) STaMP: Sequence Transformation and Mixed Precision for Low-Precision Activation Quantization 
 - [ICLR 2026](https://arxiv.org/abs/2510.03267) PT²-LLM: Post-Training Ternarization for Large Language Models [[code](https://github.com/XIANGLONGYAN/PT2-LLM)] ![GitHub Repo stars](https://img.shields.io/github/stars/XIANGLONGYAN/PT2-LLM)
 
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/38318) Quant Experts: Token-aware Adaptive Error Reconstruction with Mixture of Experts for Large Vision-Language Models Quantization
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/37371) Fine-Grained Post-Training Quantization for Large Vision Language Models with Quantization-Aware Integrated Gradients [[code](https://github.com/ucas-xiang/QIG)] ![GitHub Repo stars](https://img.shields.io/github/stars/ucas-xiang/QIG)
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/39923) MASQuant: Modality-Aware Smoothing Quantization for Multimodal Large Language Models
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/37801) SegQuant: A Semantics-Aware and Generalizable Quantization Framework for Diffusion Models
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/38834) VLM-PTQ: Efficient Post-Training Quantization for Large Vision-Language Models
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/38420) Rethinking Asymmetric Quantization: Hidden Symmetry in Vision Model Weights
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/39134) Gradient Knows Best: Mixed-Precision Quantization via Gradient-Guided Bit Allocation for Super-Resolution
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/36475) DeltaQuant: 4-bit Video Diffusion Models with Spatiotemporal Delta Smoothing
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/38308) LS-ViT: Least-Squares Hessian Based Block Reconstruction for Low-Bit Post-Training Quantization of Vision Transformers
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/39915) QuantVLA: Scale-Calibrated Post-Training Quantization for Vision-Language-Action Models [[code](https://github.com/AIoT-MLSys-Lab/QuantVLA)] ![GitHub Repo stars](https://img.shields.io/github/stars/AIoT-MLSys-Lab/QuantVLA)
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/36374) TWEO: Transformers Without Extreme Outliers Enables FP8 Training And Quantization For Dummies
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/39532) S2D: Selective Spectral Decay for Quantization-Friendly Conditioning of Neural Activations
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/40759) Q-MambaIR: Accurate Quantized Mamba for Efficient Image Restoration
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/41341) FraQAT: Quantization Aware Training with Fractional Bits
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/38959) Sampling-Aware Quantization for Diffusion Models
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/40804) D4C: Data-Free Quantization for Contrastive Language-Image Pre-Training Models [[code](https://github.com/Keio-CSG/D4C)] ![GitHub Repo stars](https://img.shields.io/github/stars/Keio-CSG/D4C)
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/40008) CAR-SAM: Cross-Attention Reconstruction for Post-Training Quantization of the Segment Anything Model
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/37643) QVGGT: Post-Training Quantized Visual Geometry Grounded Transformer
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/41418) Modality-Aware Bit Allocation for Mixed-Precision Quantization of Vision-Language Models
+- [CVPR 2026](https://cvpr.thecvf.com/virtual/2026/poster/38850) BinaryAttention: One-Bit QK-Attention for Vision and Diffusion Transformers [[code](https://github.com/EdwardChasel/BinaryAttention)] ![GitHub Repo stars](https://img.shields.io/github/stars/EdwardChasel/BinaryAttention)
+
+- [ICML 2026](https://icml.cc/virtual/2026/poster/68796) LO-BCQ: Locally Optimal Block Clustered Quantization for 4-bit (W4A4) LLM Inference
+- [ICML 2026](https://icml.cc/virtual/2026/poster/63073) ReQAT: Achieving Full-Precision Reasoning Accuracy with 4-bit Floating-Point Quantization-Aware Training
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61670) MixQuant: Pushing the Limits of Block Rotations in Post-Training Quantization
+- [ICML 2026](https://icml.cc/virtual/2026/poster/65030) S-Quant: Rethinking Weight Quantization with Seed-Based Generation
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62359) BPDQ: Bit-Plane Decomposition Quantization on a Variable Grid for Large Language Models
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61745) No Retraining at Edge: Efficient Resource-Aware Mixed-Precision Quantization via Federated Supernet Learning
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62598) WaterSIC: Information-Theoretically (Near) Optimal Linear Layer Quantization
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62700) Q-DiT4SR: Exploration of Detail-Preserving Diffusion Transformer Quantization for Real-World Image Super-Resolution
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62979) High-Dimensional Learning Dynamics of Quantized Models with Straight-Through Estimator
+- [ICML 2026](https://icml.cc/virtual/2026/poster/66695) LiftQuant: Continuous Bit-Width Control for Pareto-Optimal LLM Deployment [[code](https://github.com/Heliulu/LiftQuant)] ![GitHub Repo stars](https://img.shields.io/github/stars/Heliulu/LiftQuant)
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62818) Block Rotation is All You Need for MXFP4 Quantization
+- [ICML 2026](https://icml.cc/virtual/2026/poster/65383) AutoQRA: Joint Optimization of Mixed-Precision Quantization and Low-rank Adapters for Efficient LLM Fine-Tuning
+- [ICML 2026](https://icml.cc/virtual/2026/poster/66162) 1-Bit Wonder: Improving QAT Performance in the Low-Bit Regime through K-Means Quantization
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61474) Attn-QAT: 4-Bit Attention With Quantization-Aware Training
+- [ICML 2026](https://icml.cc/virtual/2026/poster/60582) AGoQ: Activation and Gradient Quantization for Memory-Efficient Distributed Training of LLMs
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61314) ReSpinQuant: Efficient Layer-Wise LLM Quantization via Subspace Residual Rotation Approximation
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61392) NanoQuant: Efficient Sub-1-bit Quantization of Large Language Models
+- [ICML 2026](https://icml.cc/virtual/2026/poster/63948) Proteus: Lookup-Free Trellis-Coded Quantization by Lattice-Breaking Compute Codes for 2-Bit LLMs
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61959) WinQ: Accelerating Quantization-Aware Training of Large Language Models around Saddle Points [[code](https://github.com/facebookresearch/WinQ)] ![GitHub Repo stars](https://img.shields.io/github/stars/facebookresearch/WinQ)
+- [ICML 2026](https://icml.cc/virtual/2026/poster/60934) Toward Safe Quantization-Aware Fine-tuning: Understanding and Mitigating Safety Alignment Degradation
+- [ICML 2026](https://icml.cc/virtual/2026/poster/65260) Preserve-Then-Quantize: Balancing Rank Budgets for Quantization Error Reconstruction in LLMs
+- [ICML 2026](https://icml.cc/virtual/2026/poster/65012) GSRQ: Gain-Shape Residual Quantization for Sub-1-bit KV Cache
+- [ICML 2026](https://icml.cc/virtual/2026/poster/60769) ProjQ: Project-and-Quantize for Adapter-Aware LLM Compression
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62811) STLA: Spatiotemporal Lookahead Alignment for Post-Training Quantization
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62977) FAIR-Calib: Frontier-Aware Instability-Reweighted Calibration for Post-Training Quantization of Diffusion Large Language Models
+- [ICML 2026](https://icml.cc/virtual/2026/poster/64016) TileQ: Efficient Low-Rank Quantization of Mixture-of-Experts with 2D Tiling
+- [ICML 2026](https://icml.cc/virtual/2026/poster/60586) LFQ: Logit-aware Final-block Quantization for Boosting the Generation Quality of Low-Bit Quantized LLMs
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62533) DLLMQuant: A Post-Training Quantization Framework Tailored for Diffusion-Based Large Language Models
+- [ICML 2026](https://icml.cc/virtual/2026/poster/63357) SHARP-Q: Spectral Hessian Alignment and Rectification for Post-training Quantization
+- [ICML 2026](https://icml.cc/virtual/2026/poster/64803) Selective Coupling of Decoupled Informative Regions: Masked Attention Alignment for Data-Free Quantization of Vision Transformers
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61264) TWLA: Breaking the Barrier to W1.58A4 Post-Training Quantization for LLMs
+- [ICML 2026](https://icml.cc/virtual/2026/poster/66544) FPTQuant: Function-Preserving Transforms for LLM Quantization
+- [ICML 2026](https://icml.cc/virtual/2026/poster/66697) INT vs. FP: A Comprehensive Study of Fine-Grained Low-bit Quantization Formats [[code](https://github.com/ChenMnZ/INT_vs_FP)] ![GitHub Repo stars](https://img.shields.io/github/stars/ChenMnZ/INT_vs_FP)
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61601) Unveiling the Potential of Quantization with MXFP4: Strategies for Quantization Error Reduction
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62561) Scaling Law for Quantization-Aware Training
+- [ICML 2026](https://icml.cc/virtual/2026/poster/66340) Error Propagation Mechanisms and Compensation Strategies for Quantized Diffusion Models
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61744) Condition Number Based Low-Bit Quantization for Image Super-Resolution [[code](https://github.com/Kai-Liu001/CondiQuant)] ![GitHub Repo stars](https://img.shields.io/github/stars/Kai-Liu001/CondiQuant)
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62753) ECO: Quantized Training without Full-Precision Master Weights
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62765) LATMiX: Learnable Affine Transformations for Microscaling Quantization of LLMs
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62517) RobuQ: Pushing DiTs to W1.58A2 via Robust Activation Quantization [[code](https://github.com/racoonykc/RobuQ)] ![GitHub Repo stars](https://img.shields.io/github/stars/racoonykc/RobuQ)
+- [ICML 2026](https://icml.cc/virtual/2026/poster/65000) QTALE: Quantization-Robust Token-Adaptive Layer Execution for LLMs
+- [ICML 2026](https://icml.cc/virtual/2026/poster/63038) TwinQuant: Learnable Subspace Decomposition for 4-Bit LLM Quantization
+- [ICML 2026](https://icml.cc/virtual/2026/poster/65723) NeUQI: Near-Optimal Uniform Quantization Parameter Initialization for Low-Bit LLMs
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61161) VEQ: Modality-Adaptive Quantization for MoE Vision-Language Models
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61341) Quant VideoGen: Auto-Regressive Long Video Generation via 2-Bit KV-Cache Quantization [[code](https://github.com/svg-project/Quant-VideoGen)] ![GitHub Repo stars](https://img.shields.io/github/stars/svg-project/Quant-VideoGen)
+- [ICML 2026](https://icml.cc/virtual/2026/poster/65822) OSAQ: Outlier Self-Absorption for Accurate Low-bit LLM Quantization
+- [ICML 2026](https://icml.cc/virtual/2026/poster/66296) Q-Sched: Pushing the Boundaries of Few-Step Diffusion Models with Quantization-Aware Scheduling [[code](https://github.com/enyac-group/q-sched)] ![GitHub Repo stars](https://img.shields.io/github/stars/enyac-group/q-sched)
+- [ICML 2026](https://icml.cc/virtual/2026/poster/63404) SINQ: Sinkhorn-Normalized Quantization for Calibration-Free Low-Precision LLM Weights [[code](https://github.com/huawei-csl/SINQ)] ![GitHub Repo stars](https://img.shields.io/github/stars/huawei-csl/SINQ)
+- [ICML 2026](https://icml.cc/virtual/2026/poster/66083) Dissecting Quantization Error: A Concentration-Alignment Perspective
+- [ICML 2026](https://icml.cc/virtual/2026/poster/65313) Principled SVD-based Delta Compression via Quantization Error Minimization
+- [ICML 2026](https://icml.cc/virtual/2026/poster/61551) PatternKV: Flattening KV Representation Expands Quantization Headroom
+- [ICML 2026](https://icml.cc/virtual/2026/poster/66251) GEMQ: Global Expert-Level Mixed-Precision Quantization for MoE LLMs
+- [ICML 2026](https://icml.cc/virtual/2026/poster/63124) WUSH: Near-Optimal Adaptive Transforms for LLM Quantization [[code](https://github.com/IST-DASLab/WUSH)] ![GitHub Repo stars](https://img.shields.io/github/stars/IST-DASLab/WUSH)
+- [ICML 2026](https://icml.cc/virtual/2026/poster/65542) LC-QAT: Data-Efficient 2-Bit QAT for LLMs via Linear-Constrained Vector Quantization
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62413) LSGQuant: Layer-Sensitivity Guided Quantization for One-Step Diffusion Real-World Video Super-Resolution [[code](https://github.com/zhengchen1999/LSGQuant)] ![GitHub Repo stars](https://img.shields.io/github/stars/zhengchen1999/LSGQuant)
+- [ICML 2026](https://icml.cc/virtual/2026/poster/65816) CAT-Q: Cost-efficient and Accurate Ternary Quantization for LLMs 
+- [ICML 2026](https://icml.cc/virtual/2026/poster/60537) Precision-Induced Miscalibration: Understanding and Correcting Confidence Distortion in Quantized Neural Networks 
+- [ICML 2026](https://icml.cc/virtual/2026/poster/65603) CoCoQuant: Breaking the Bandwidth Wall via Co-Optimized Communication and Computation Quantization 
+- [ICML 2026](https://icml.cc/virtual/2026/poster/60504) RaBitQCache: Rotated Binary Quantization for KVCache in Long Context LLM Inference 
+- [ICML 2026](https://icml.cc/virtual/2026/poster/64367) ImpQuant: Fine-Grained Importance-Aware Quantization for Large Vision-Language Models 
+- [ICML 2026](https://icml.cc/virtual/2026/poster/64968) Absorbing Quantization Error by Deformable Noise Scheduler for Diffusion Models 
+- [ICML 2026](https://icml.cc/virtual/2026/poster/66147) PsumQuant: In-line Post-training Partial Sum Quantizer for Energy Efficient NPU Inference 
+- [ICML 2026](https://icml.cc/virtual/2026/poster/64402) Towards Sub-second Biological Foundation Model Infrastructure: A Quantized Consistency Diffusion Framework for Molecular Docking 
+- [ICML 2026](https://icml.cc/virtual/2026/poster/62778) MixFP4: Extending NVFP4 to Mixed Micro-Format via Scale-Bit Reuse and Tensor Core Co-design
+
 ### 2025
 - [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119764) QBasicVSR: Temporal Awareness Adaptation Quantization for Video Super-Resolution 
 - [NeurIPS 2025](https://arxiv.org/abs/2502.02631) ParetoQ: Improving Scaling Laws in Extremely Low-bit LLM Quantization
